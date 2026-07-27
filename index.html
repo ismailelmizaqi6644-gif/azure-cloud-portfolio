@@ -10,11 +10,14 @@
 <body>
 
     <div class="container">
-        <!-- Language Switcher -->
-        <div class="lang-switcher">
-            <button onclick="changeLanguage('fr')" class="lang-btn active">FR</button>
-            <button onclick="changeLanguage('en')" class="lang-btn">EN</button>
-            <button onclick="changeLanguage('ar')" class="lang-btn">AR</button>
+        <!-- Top Bar: Languages & Download CV -->
+        <div class="top-bar">
+            <a href="#" class="btn-cv" id="btn-cv" download><i class="fas fa-file-arrow-down"></i> Télécharger CV</a>
+            <div class="lang-switcher">
+                <button onclick="changeLanguage('fr')" class="lang-btn active">FR</button>
+                <button onclick="changeLanguage('en')" class="lang-btn">EN</button>
+                <button onclick="changeLanguage('ar')" class="lang-btn">AR</button>
+            </div>
         </div>
 
         <!-- Header Profile -->
@@ -38,6 +41,12 @@
             <button class="menu-btn btn-blue" onclick="openModal('about-modal')">
                 <i class="fas fa-user-circle"></i>
                 <span id="btn-about">À propos de moi</span>
+                <i class="fas fa-arrow-right arrow"></i>
+            </button>
+
+            <button class="menu-btn btn-purple" onclick="openModal('projects-modal')">
+                <i class="fas fa-diagram-project"></i>
+                <span id="btn-projects">Mes Projets</span>
                 <i class="fas fa-arrow-right arrow"></i>
             </button>
 
@@ -65,7 +74,9 @@
         </footer>
     </div>
 
-    <!-- Modals -->
+    <!-- ===== MODALS ===== -->
+
+    <!-- 1. À propos de moi -->
     <div id="about-modal" class="modal">
         <div class="modal-content border-blue">
             <span class="close-btn" onclick="closeModal('about-modal')">&times;</span>
@@ -77,6 +88,25 @@
         </div>
     </div>
 
+    <!-- 2. Mes Projets (قسم المشاريع الجديد) -->
+    <div id="projects-modal" class="modal">
+        <div class="modal-content border-purple">
+            <span class="close-btn" onclick="closeModal('projects-modal')">&times;</span>
+            <h2><i class="fas fa-diagram-project text-purple"></i> <span id="modal-projects-title">Mes Projets</span></h2>
+            <div class="modal-body">
+                <div class="skill-box">
+                    <h3>Azure Static Web App Deployment</h3>
+                    <p>Déploiement d'un portfolio interactif avec GitHub Actions CI/CD et hébergement Azure.</p>
+                </div>
+                <div class="skill-box">
+                    <h3>Infrastructure Réseau & Linux</h3>
+                    <p>Configuration de serveurs Ubuntu, gestion des accès SSH et routage réseau.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 3. Compétences Techniques -->
     <div id="skills-modal" class="modal">
         <div class="modal-content border-yellow">
             <span class="close-btn" onclick="closeModal('skills-modal')">&times;</span>
@@ -98,6 +128,7 @@
         </div>
     </div>
 
+    <!-- 4. Certifications & Attestations -->
     <div id="certs-modal" class="modal">
         <div class="modal-content border-red">
             <span class="close-btn" onclick="closeModal('certs-modal')">&times;</span>
@@ -112,13 +143,14 @@
         </div>
     </div>
 
-    <!-- Formulaire de Contact lié à Formspree -->
+    <!-- 5. Formulaire de Contact avec AJAX -->
     <div id="contact-modal" class="modal">
         <div class="modal-content border-green">
             <span class="close-btn" onclick="closeModal('contact-modal')">&times;</span>
             <h2><i class="fas fa-envelope text-green"></i> <span id="modal-contact-title">Contactez-moi</span></h2>
             <div class="modal-body">
-                <form action="https://formspree.io/f/mrenrrpq" method="POST" id="contact-form">
+                <div id="form-alert" class="alert-box" style="display: none;"></div>
+                <form id="contact-form" onsubmit="handleFormSubmit(event)">
                     <div class="form-group">
                         <label id="lbl-name">Nom complet :</label>
                         <input type="text" name="name" required placeholder="Votre nom">
@@ -139,4 +171,125 @@
 
     <script>
         function openModal(id) { document.getElementById(id).style.display = "flex"; }
-        function closeModal(id) { document.getElementById(id).style.display = "none"; }
+        function closeModal(id) { 
+            document.getElementById(id).style.display = "none";
+            document.getElementById('form-alert').style.display = "none";
+        }
+        window.onclick = function(event) {
+            if (event.target.classList.contains('modal')) { closeModal(event.target.id); }
+        }
+
+        // إرسال الاستمارة بدون الخروج من الصفحة (AJAX)
+        async function handleFormSubmit(event) {
+            event.preventDefault();
+            const form = event.target;
+            const btn = document.getElementById('btn-send');
+            const alertBox = document.getElementById('form-alert');
+
+            btn.disabled = true;
+            btn.innerText = "Envoi en cours...";
+
+            try {
+                const response = await fetch("https://formspree.io/f/mrenrrpq", {
+                    method: "POST",
+                    body: new FormData(form),
+                    headers: { 'Accept': 'application/json' }
+                });
+
+                if (response.ok) {
+                    alertBox.className = "alert-box alert-success";
+                    alertBox.innerText = "Message envoyé avec succès ! Redirecting...";
+                    alertBox.style.display = "block";
+                    form.reset();
+
+                    setTimeout(() => {
+                        closeModal('contact-modal');
+                        btn.disabled = false;
+                        btn.innerText = "Envoyer le message";
+                    }, 2500);
+                } else {
+                    throw new Error();
+                }
+            } catch (error) {
+                alertBox.className = "alert-box alert-error";
+                alertBox.innerText = "Désolé, une erreur est survenue. Réessayez!";
+                alertBox.style.display = "block";
+                btn.disabled = false;
+                btn.innerText = "Envoyer le message";
+            }
+        }
+
+        const translations = {
+            fr: {
+                subtitle: "Technicien Spécialisé en Infrastructure Digitale",
+                badge: "Option Cloud Computing",
+                cvBtn: "Télécharger CV",
+                aboutBtn: "À propos de moi",
+                projectsBtn: "Mes Projets",
+                skillsBtn: "Compétences Techniques",
+                certsBtn: "Certifications & Attestations",
+                contactBtn: "Me Contacter (Formulaire)",
+                contactTitle: "Contactez-moi",
+                lblName: "Nom complet :",
+                lblEmail: "Adresse Email :",
+                lblMessage: "Message :",
+                btnSend: "Envoyer le message",
+                aboutBody: "<p>Bienvenue sur mon portfolio ! Je suis <strong>Ismail El Mizaqi</strong>, passionné par les technologies Cloud, l'administration système et les infrastructures réseau.</p><p>Ce portfolio est hébergé sur <strong>Microsoft Azure Static Web Apps</strong>.</p>"
+            },
+            en: {
+                subtitle: "Specialized Technician in Digital Infrastructure",
+                badge: "Cloud Computing Option",
+                cvBtn: "Download CV",
+                aboutBtn: "About Me",
+                projectsBtn: "My Projects",
+                skillsBtn: "Technical Skills",
+                certsBtn: "Certifications & Credentials",
+                contactBtn: "Contact Me (Form)",
+                contactTitle: "Contact Me",
+                lblName: "Full Name:",
+                lblEmail: "Email Address:",
+                lblMessage: "Message:",
+                btnSend: "Send Message",
+                aboutBody: "<p>Welcome to my portfolio! I am <strong>Ismail El Mizaqi</strong>, passionate about Cloud technologies, system administration, and network infrastructure.</p><p>Hosted directly on <strong>Microsoft Azure Static Web Apps</strong>.</p>"
+            },
+            ar: {
+                subtitle: "تقني متخصص في البنية التحتية الرقمية",
+                badge: "خيار الحوسبة السحابية (Cloud Computing)",
+                cvBtn: "تحميل السيرة الذاتية",
+                aboutBtn: "نبذة عني",
+                projectsBtn: "مشاريعي",
+                skillsBtn: "المهارات التقنية",
+                certsBtn: "الشهادات والشواهد",
+                contactBtn: "تواصل معي (استمارة)",
+                contactTitle: "تواصل معي",
+                lblName: "الاسم الكامل:",
+                lblEmail: "البريد الإلكتروني:",
+                lblMessage: "الرسالة:",
+                btnSend: "إرسال الرسالة",
+                aboutBody: "<p>مرحباً بكم في موقعي! أنا <strong>إسماعيل الميزاقي</strong>، شغوف بتقنيات السحابة، إدارة الأنظمة والشبكات.</p><p>هذا الموقع مستضاف مباشرة على <strong>Microsoft Azure Static Web Apps</strong>.</p>"
+            }
+        };
+
+        function changeLanguage(lang) {
+            document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            const t = translations[lang];
+            document.getElementById('txt-subtitle').innerText = t.subtitle;
+            document.getElementById('txt-badge').innerText = t.badge;
+            document.getElementById('btn-cv').innerHTML = `<i class="fas fa-file-arrow-down"></i> ${t.cvBtn}`;
+            document.getElementById('btn-about').innerText = t.aboutBtn;
+            document.getElementById('btn-projects').innerText = t.projectsBtn;
+            document.getElementById('btn-skills').innerText = t.skillsBtn;
+            document.getElementById('btn-certs').innerText = t.certsBtn;
+            document.getElementById('btn-contact').innerText = t.contactBtn;
+            document.getElementById('modal-contact-title').innerText = t.contactTitle;
+            document.getElementById('lbl-name').innerText = t.lblName;
+            document.getElementById('lbl-email').innerText = t.lblEmail;
+            document.getElementById('lbl-message').innerText = t.lblMessage;
+            document.getElementById('btn-send').innerText = t.btnSend;
+            document.getElementById('modal-about-body').innerHTML = t.aboutBody;
+        }
+    </script>
+</body>
+</html>
