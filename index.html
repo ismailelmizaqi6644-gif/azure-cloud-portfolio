@@ -3,91 +3,130 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ismail El Mizaqi | Cloud Infrastructure Portfolio</title>
+    <title>Ismail El Mizaqi | Cloud Portfolio</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
 
-    <header>
-        <h1>Ismail El Mizaqi</h1>
-        <p>Technicien Spécialisé en Infrastructure Digitale | Option Cloud Computing</p>
-        
-        <div class="social-links">
-            <a href="https://www.linkedin.com/in/ismail-el-mizaqi-71105641b" target="_blank">
-                <i class="fab fa-linkedin"></i> Mon Profil LinkedIn
-            </a>
+    <div class="container">
+        <!-- Header Profile -->
+        <header class="profile-card">
+            <div class="avatar">
+                <i class="fas fa-user-gear"></i>
+            </div>
+            <h1>Ismail El Mizaqi</h1>
+            <p class="subtitle">Technicien Spécialisé en Infrastructure Digitale</p>
+            <span class="badge">Option Cloud Computing</span>
+
+            <div class="social-links">
+                <a href="https://www.linkedin.com/in/ismail-el-mizaqi-71105641b" target="_blank" class="btn-linkedin">
+                    <i class="fab fa-linkedin"></i> Profil LinkedIn
+                </a>
+            </div>
+        </header>
+
+        <!-- Navigation Buttons (الأزرار التفاعلية) -->
+        <nav class="menu-grid">
+            <button class="menu-btn btn-blue" onclick="openModal('about-modal')">
+                <i class="fas fa-user-circle"></i>
+                <span>À propos de moi</span>
+                <i class="fas fa-arrow-right arrow"></i>
+            </button>
+
+            <button class="menu-btn btn-yellow" onclick="openModal('skills-modal')">
+                <i class="fas fa-laptop-code"></i>
+                <span>Compétences Techniques</span>
+                <i class="fas fa-arrow-right arrow"></i>
+            </button>
+
+            <button class="menu-btn btn-red" onclick="openModal('certs-modal')">
+                <i class="fas fa-award"></i>
+                <span>Certifications & Attestations</span>
+                <i class="fas fa-arrow-right arrow"></i>
+            </button>
+        </nav>
+
+        <footer>
+            <p>© 2026 Ismail El Mizaqi | Propulsé par Microsoft Azure</p>
+        </footer>
+    </div>
+
+    <!-- ===== WAJAHAT AL-SAFAHAT (MODAL WINDOWS) ===== -->
+
+    <!-- 1. الواجهة الأولى: À propos de moi -->
+    <div id="about-modal" class="modal">
+        <div class="modal-content border-blue">
+            <span class="close-btn" onclick="closeModal('about-modal')">&times;</span>
+            <h2><i class="fas fa-user-circle text-blue"></i> À propos de moi</h2>
+            <div class="modal-body">
+                <p>Bienvenue sur mon portfolio ! Je suis <strong>Ismail El Mizaqi</strong>, passionné par les technologies Cloud, l'administration système et les infrastructures réseau.</p>
+                <p>Ce portfolio est conçu pour présenter mon parcours professionnel et mes compétences techniques, hébergé directement sur <strong>Microsoft Azure Static Web Apps</strong>.</p>
+            </div>
         </div>
-    </header>
+    </div>
 
-    <main>
-        <!-- قسم نبذة عني منسدل -->
-        <section>
-            <details>
-                <summary>À propos de moi</summary>
-                <div class="details-content">
-                    <p>Bienvenue sur mon portfolio ! Je suis <strong>Ismail El Mizaqi</strong>, passionné par les technologies Cloud, l'administration système et les infrastructures réseau. Ce portfolio est hébergé sur <strong>Microsoft Azure Static Web Apps</strong>.</p>
+    <!-- 2. الواجهة الثانية: Compétences Techniques -->
+    <div id="skills-modal" class="modal">
+        <div class="modal-content border-yellow">
+            <span class="close-btn" onclick="closeModal('skills-modal')">&times;</span>
+            <h2><i class="fas fa-laptop-code text-yellow"></i> Compétences Techniques</h2>
+            <div class="modal-body">
+                <div class="skill-box">
+                    <h3>Cloud & Virtualisation</h3>
+                    <p>Microsoft Azure, Virtual Machines, Azure Static Web Apps</p>
                 </div>
-            </details>
-        </section>
-
-        <!-- قسم المهارات التقنية منسدل -->
-        <section>
-            <details>
-                <summary>Compétences Techniques</summary>
-                <div class="details-content">
-                    <div class="skills-grid">
-                        <div class="skill-card">
-                            <h3>Cloud & Virtualisation</h3>
-                            <p>Microsoft Azure, Virtual Machines, Azure Static Web Apps</p>
-                        </div>
-                        <div class="skill-card">
-                            <h3>Systèmes & Réseaux</h3>
-                            <p>Linux (Ubuntu/Debian), Windows Server, Adressage IP, Routing, SSH & Telnet</p>
-                        </div>
-                        <div class="skill-card">
-                            <h3>DevOps & Outils</h3>
-                            <p>Git, GitHub Actions, CI/CD Workflows</p>
-                        </div>
-                    </div>
+                <div class="skill-box">
+                    <h3>Systèmes & Réseaux</h3>
+                    <p>Linux (Ubuntu/Debian), Windows Server, Adressage IP, Routing, SSH & Telnet</p>
                 </div>
-            </details>
-        </section>
-
-        <!-- قسم الشهادات منسدل -->
-        <section>
-            <details>
-                <summary>Certifications & Attestations</summary>
-                <div class="details-content">
-                    <div class="cert-category">
-                        <h3>Certifications Professionnelles & Cloud</h3>
-                        <ul>
-                            <li><strong>Microsoft Certified: Azure Fundamentals (AZ-900)</strong> <em>(En préparation)</em></li>
-                            <li><strong>Attestation de Formation Spécialisée en Infrastructure Digitale</strong> - OFPPT</li>
-                        </ul>
-                    </div>
-
-                    <div class="cert-category">
-                        <h3>Attestations Parascolaires & Engagement</h3>
-                        <ul>
-                            <li><strong>Attestation de Participation aux Activités Culturelles et Sportives</strong></li>
-                            <li><strong>Attestation de Volontariat et Organisation d'Événements</strong></li>
-                        </ul>
-                    </div>
+                <div class="skill-box">
+                    <h3>DevOps & Outils</h3>
+                    <p>Git, GitHub Actions, CI/CD Workflows</p>
                 </div>
-            </details>
-        </section>
-    </main>
+            </div>
+        </div>
+    </div>
 
-    <!-- زر الواتساب العائم باللون الأخضر -->
-    <a href="https://wa.me/212700852312" class="whatsapp-btn" target="_blank" title="Contactez-moi sur WhatsApp">
+    <!-- 3. الواجهة الثالثة: Certifications & Attestations -->
+    <div id="certs-modal" class="modal">
+        <div class="modal-content border-red">
+            <span class="close-btn" onclick="closeModal('certs-modal')">&times;</span>
+            <h2><i class="fas fa-award text-red"></i> Certifications & Attestations</h2>
+            <div class="modal-body">
+                <h3>Certifications Cloud</h3>
+                <ul>
+                    <li><strong>Microsoft Certified: Azure Fundamentals (AZ-900)</strong> <em>(En préparation)</em></li>
+                    <li><strong>Attestation de Formation Spécialisée</strong> - OFPPT</li>
+                </ul>
+
+                <h3>Attestations & Engagements</h3>
+                <ul>
+                    <li><strong>Attestation de Participation aux Activités Culturelles</strong></li>
+                    <li><strong>Attestation de Volontariat et Engagement</strong></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- زر الواتساب الخضر -->
+    <a href="https://wa.me/212700852312" class="whatsapp-btn" target="_blank" title="WhatsApp">
         <i class="fab fa-whatsapp"></i>
     </a>
 
-    <footer>
-        <p>© 2026 Ismail El Mizaqi - Propulsé par Microsoft Azure</p>
-    </footer>
-
-    <script src="main.js"></script>
+    <!-- JavaScript للتحكم فـ فتح وتسديد الواجهات -->
+    <script>
+        function openModal(id) {
+            document.getElementById(id).style.display = "flex";
+        }
+        function closeModal(id) {
+            document.getElementById(id).style.display = "none";
+        }
+        window.onclick = function(event) {
+            if (event.target.classList.contains('modal')) {
+                event.target.style.display = "none";
+            }
+        }
+    </script>
 </body>
 </html>
