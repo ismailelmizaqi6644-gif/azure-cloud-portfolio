@@ -13,14 +13,6 @@
       "type": "http",
       "direction": "out",
       "name": "res"
-    },
-    {
-      "name": "outputDocument",
-      "type": "cosmosDB",
-      "databaseName": "PortfolioDB",
-      "collectionName": "Messages",
-      "connectionStringSetting": "CosmosDBConnectionString",
-      "direction": "out"
     }
   ]
 }
