@@ -21,58 +21,68 @@
     </header>
 
     <main>
-        <!-- قسم نبذة عني -->
-        <section id="about">
-            <h2>À propos de moi</h2>
-            <p>Bienvenue sur mon portfolio ! Je suis <strong>Ismail El Mizaqi</strong>, passionné par les technologies Cloud, l'administration système et les infrastructures réseau. Ce portfolio est hébergé sur <strong>Microsoft Azure Static Web Apps</strong>.</p>
+        <!-- قسم نبذة عني منسدل -->
+        <section>
+            <details>
+                <summary>À propos de moi</summary>
+                <div class="details-content">
+                    <p>Bienvenue sur mon portfolio ! Je suis <strong>Ismail El Mizaqi</strong>, passionné par les technologies Cloud, l'administration système et les infrastructures réseau. Ce portfolio est hébergé sur <strong>Microsoft Azure Static Web Apps</strong>.</p>
+                </div>
+            </details>
         </section>
 
-        <!-- قسم عدد الزوار -->
-        <section id="stats">
-            <h2>Statistiques du Site</h2>
-            <p>Nombre de visiteurs : <span id="visitor-count">Chargement...</span></p>
+        <!-- قسم المهارات التقنية منسدل -->
+        <section>
+            <details>
+                <summary>Compétences Techniques</summary>
+                <div class="details-content">
+                    <div class="skills-grid">
+                        <div class="skill-card">
+                            <h3>Cloud & Virtualisation</h3>
+                            <p>Microsoft Azure, Virtual Machines, Azure Static Web Apps</p>
+                        </div>
+                        <div class="skill-card">
+                            <h3>Systèmes & Réseaux</h3>
+                            <p>Linux (Ubuntu/Debian), Windows Server, Adressage IP, Routing, SSH & Telnet</p>
+                        </div>
+                        <div class="skill-card">
+                            <h3>DevOps & Outils</h3>
+                            <p>Git, GitHub Actions, CI/CD Workflows</p>
+                        </div>
+                    </div>
+                </div>
+            </details>
         </section>
 
-        <!-- قسم المهارات -->
-        <section id="skills">
-            <h2>Compétences Techniques</h2>
-            <div class="skills-grid">
-                <div class="skill-card">
-                    <h3>Cloud & Virtualisation</h3>
-                    <p>Microsoft Azure, Virtual Machines, Azure Static Web Apps</p>
-                </div>
-                <div class="skill-card">
-                    <h3>Systèmes & Réseaux</h3>
-                    <p>Linux (Ubuntu/Debian), Windows Server, Adressage IP, Routing, SSH & Telnet</p>
-                </div>
-                <div class="skill-card">
-                    <h3>DevOps & Outils</h3>
-                    <p>Git, GitHub Actions, CI/CD Workflows</p>
-                </div>
-            </div>
-        </section>
+        <!-- قسم الشهادات منسدل -->
+        <section>
+            <details>
+                <summary>Certifications & Attestations</summary>
+                <div class="details-content">
+                    <div class="cert-category">
+                        <h3>Certifications Professionnelles & Cloud</h3>
+                        <ul>
+                            <li><strong>Microsoft Certified: Azure Fundamentals (AZ-900)</strong> <em>(En préparation)</em></li>
+                            <li><strong>Attestation de Formation Spécialisée en Infrastructure Digitale</strong> - OFPPT</li>
+                        </ul>
+                    </div>
 
-        <!-- قسم الشهادات -->
-        <section id="certifications">
-            <h2>Certifications & Attestations</h2>
-            
-            <div class="cert-category">
-                <h3>Certifications Professionnelles & Cloud</h3>
-                <ul>
-                    <li><strong>Microsoft Certified: Azure Fundamentals (AZ-900)</strong> <em>(En préparation)</em></li>
-                    <li><strong>Attestation de Formation Spécialisée en Infrastructure Digitale</strong> - OFPPT</li>
-                </ul>
-            </div>
-
-            <div class="cert-category">
-                <h3>Attestations Parascolaires & Engagement</h3>
-                <ul>
-                    <li><strong>Attestation de Participation aux Activités Culturelles et Sportives</strong> - Établissement Secondaire</li>
-                    <li><strong>Attestation de Volontariat et Organisation d'Événements</strong> - Association Scolaire</li>
-                </ul>
-            </div>
+                    <div class="cert-category">
+                        <h3>Attestations Parascolaires & Engagement</h3>
+                        <ul>
+                            <li><strong>Attestation de Participation aux Activités Culturelles et Sportives</strong></li>
+                            <li><strong>Attestation de Volontariat et Organisation d'Événements</strong></li>
+                        </ul>
+                    </div>
+                </div>
+            </details>
         </section>
     </main>
+
+    <!-- زر الواتساب العائم باللون الأخضر -->
+    <a href="https://wa.me/212700852312" class="whatsapp-btn" target="_blank" title="Contactez-moi sur WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
 
     <footer>
         <p>© 2026 Ismail El Mizaqi - Propulsé par Microsoft Azure</p>
