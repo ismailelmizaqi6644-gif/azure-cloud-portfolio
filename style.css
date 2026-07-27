@@ -22,6 +22,31 @@ body {
     max-width: 500px;
 }
 
+/* Language Switcher */
+.lang-switcher {
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+    margin-bottom: 15px;
+}
+
+.lang-btn {
+    background: #161b22;
+    border: 1px solid #30363d;
+    color: #8b949e;
+    padding: 5px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.lang-btn.active, .lang-btn:hover {
+    background: #1f6feb;
+    color: white;
+    border-color: #1f6feb;
+}
+
 /* Profile Card */
 .profile-card {
     background: #161b22;
@@ -30,7 +55,7 @@ body {
     padding: 30px 20px;
     text-align: center;
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
-    margin-bottom: 25px;
+    margin-bottom: 20px;
 }
 
 .avatar {
@@ -46,16 +71,8 @@ body {
     color: white;
 }
 
-.profile-card h1 {
-    font-size: 1.6rem;
-    color: #ffffff;
-}
-
-.subtitle {
-    font-size: 0.9rem;
-    color: #8b949e;
-    margin-top: 5px;
-}
+.profile-card h1 { font-size: 1.6rem; color: #ffffff; }
+.subtitle { font-size: 0.9rem; color: #8b949e; margin-top: 5px; }
 
 .badge {
     display: inline-block;
@@ -69,10 +86,7 @@ body {
     font-weight: 600;
 }
 
-.social-links {
-    margin-top: 20px;
-}
-
+.social-links { margin-top: 20px; }
 .btn-linkedin {
     display: inline-block;
     background: #0a66c2;
@@ -83,76 +97,42 @@ body {
     font-weight: 600;
     transition: 0.3s;
 }
-
-.btn-linkedin:hover {
-    background: #004182;
-}
+.btn-linkedin:hover { background: #004182; }
 
 /* Menu Buttons Grid */
-.menu-grid {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-}
+.menu-grid { display: flex; flex-direction: column; gap: 12px; }
 
 .menu-btn {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 18px 20px;
+    padding: 16px 20px;
     border-radius: 15px;
     border: 1px solid transparent;
-    font-size: 1rem;
+    font-size: 0.95rem;
     font-weight: 600;
     cursor: pointer;
     transition: all 0.3s ease;
-    color: white;
 }
 
-.menu-btn i {
-    font-size: 1.3rem;
-}
+.btn-blue { background: #161b22; border-color: #1f6feb; color: #58a6ff; }
+.btn-blue:hover { background: #1f6feb; color: white; }
 
-/* Colors Theme */
-.btn-blue {
-    background: #161b22;
-    border-color: #1f6feb;
-    color: #58a6ff;
-}
-.btn-blue:hover {
-    background: #1f6feb;
-    color: white;
-}
+.btn-yellow { background: #161b22; border-color: #d29922; color: #e3b341; }
+.btn-yellow:hover { background: #d29922; color: white; }
 
-.btn-yellow {
-    background: #161b22;
-    border-color: #d29922;
-    color: #e3b341;
-}
-.btn-yellow:hover {
-    background: #d29922;
-    color: white;
-}
+.btn-red { background: #161b22; border-color: #f85149; color: #ff7b72; }
+.btn-red:hover { background: #f85149; color: white; }
 
-.btn-red {
-    background: #161b22;
-    border-color: #f85149;
-    color: #ff7b72;
-}
-.btn-red:hover {
-    background: #f85149;
-    color: white;
-}
+.btn-green { background: #161b22; border-color: #238636; color: #3fb950; }
+.btn-green:hover { background: #238636; color: white; }
 
-/* Modal Windows (الصفحات المنعزلة) */
+/* Modals */
 .modal {
     display: none;
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.8);
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.85);
     backdrop-filter: blur(5px);
     z-index: 2000;
     justify-content: center;
@@ -179,58 +159,41 @@ body {
 .border-blue { border: 2px solid #1f6feb; }
 .border-yellow { border: 2px solid #d29922; }
 .border-red { border: 2px solid #f85149; }
+.border-green { border: 2px solid #238636; }
 
 .text-blue { color: #58a6ff; }
 .text-yellow { color: #e3b341; }
 .text-red { color: #ff7b72; }
+.text-green { color: #3fb950; }
 
-.close-btn {
-    position: absolute;
-    top: 15px;
-    right: 20px;
-    font-size: 28px;
-    color: #8b949e;
-    cursor: pointer;
-}
-
+.close-btn { position: absolute; top: 15px; right: 20px; font-size: 28px; color: #8b949e; cursor: pointer; }
 .close-btn:hover { color: white; }
 
-.modal-body {
-    margin-top: 20px;
-    line-height: 1.6;
-}
-
-.skill-box {
+/* Form Group Styles */
+.form-group { margin-bottom: 15px; text-align: left; }
+.form-group label { display: block; margin-bottom: 5px; font-size: 0.85rem; color: #8b949e; }
+.form-group input, .form-group textarea {
+    width: 100%;
+    padding: 10px;
     background: #0d1117;
-    padding: 12px;
-    border-radius: 10px;
-    margin-bottom: 10px;
-}
-
-/* WhatsApp Button */
-.whatsapp-btn {
-    position: fixed;
-    bottom: 25px;
-    right: 25px;
-    background: #25d366;
+    border: 1px solid #30363d;
+    border-radius: 8px;
     color: white;
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 32px;
-    box-shadow: 0 5px 15px rgba(37, 211, 102, 0.4);
-    text-decoration: none;
-    transition: transform 0.3s;
+    outline: none;
 }
+.form-group input:focus, .form-group textarea:focus { border-color: #238636; }
 
-.whatsapp-btn:hover { transform: scale(1.1); }
-
-footer {
-    text-align: center;
-    margin-top: 30px;
-    font-size: 0.8rem;
-    color: #8b949e;
+.submit-btn {
+    width: 100%;
+    padding: 12px;
+    background: #238636;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
 }
+.submit-btn:hover { background: #2ea043; }
+
+footer { text-align: center; margin-top: 25px; font-size: 0.8rem; color: #8b949e; }
