@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
@@ -274,30 +274,4 @@
                 lblEmail: "البريد الإلكتروني:",
                 lblMessage: "الرسالة:",
                 btnSend: "إرسال الرسالة",
-                aboutBody: "<p>أنا <strong>إسماعيل الميزاقي</strong>، طالب في تخصص <strong>البنية التحتية الرقمية (خيار الحوسبة السحابية)</strong> بمؤسسة OFPPT (معهد NTIC آسفي).</p><p>شغوف بإدارة أنظمة <strong>Linux و Windows Server</strong>، الشبكات، وبناء الحلول السحابية على منصة <strong>Microsoft Azure</strong>.</p>"
-            }
-        };
-
-        function changeLanguage(lang) {
-            document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
-            event.target.classList.add('active');
-
-            const t = translations[lang];
-            document.getElementById('txt-subtitle').innerText = t.subtitle;
-            document.getElementById('txt-badge').innerText = t.badge;
-            document.getElementById('btn-cv').innerHTML = `<i class="fas fa-file-arrow-down"></i> ${t.cvBtn}`;
-            document.getElementById('btn-about').innerText = t.aboutBtn;
-            document.getElementById('btn-projects').innerText = t.projectsBtn;
-            document.getElementById('btn-skills').innerText = t.skillsBtn;
-            document.getElementById('btn-certs').innerText = t.certsBtn;
-            document.getElementById('btn-contact').innerText = t.contactBtn;
-            document.getElementById('modal-contact-title').innerText = t.contactTitle;
-            document.getElementById('lbl-name').innerText = t.lblName;
-            document.getElementById('lbl-email').innerText = t.lblEmail;
-            document.getElementById('lbl-message').innerText = t.lblMessage;
-            document.getElementById('btn-send').innerText = t.btnSend;
-            document.getElementById('modal-about-body').innerHTML = t.aboutBody;
-        }
-    </script>
-</body>
-</html>
+                aboutBody: "<p>أنا <strong>إسماعيل الميزاقي</strong>
