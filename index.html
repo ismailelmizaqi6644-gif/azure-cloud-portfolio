@@ -68,6 +68,13 @@
                 <i class="fas fa-arrow-right arrow"></i>
             </button>
 
+            <!-- الخانة الجديدة: Mes Expériences -->
+            <button class="menu-btn btn-purple" onclick="openModal('exp-modal')">
+                <i class="fas fa-briefcase"></i>
+                <span id="btn-exp">Mes Expériences</span>
+                <i class="fas fa-arrow-right arrow"></i>
+            </button>
+
             <button class="menu-btn btn-green" onclick="openModal('contact-modal')">
                 <i class="fas fa-paper-plane"></i>
                 <span id="btn-contact">Me Contacter (Formulaire)</span>
@@ -118,7 +125,16 @@
         </div>
     </div>
 
-    <!-- 5. Formulaire de Contact -->
+    <!-- 5. Mes Expériences (الجديد) -->
+    <div id="exp-modal" class="modal">
+        <div class="modal-content border-purple">
+            <span class="close-btn" onclick="closeModal('exp-modal')">&times;</span>
+            <h2 style="margin-bottom: 15px;"><i class="fas fa-briefcase text-purple"></i> <span id="modal-exp-title">Mes Expériences</span></h2>
+            <div class="modal-body" id="modal-exp-body"></div>
+        </div>
+    </div>
+
+    <!-- 6. Formulaire de Contact -->
     <div id="contact-modal" class="modal">
         <div class="modal-content border-green">
             <span class="close-btn" onclick="closeModal('contact-modal')">&times;</span>
@@ -214,12 +230,14 @@
                 projectsBtn: "Mes Projets",
                 skillsBtn: "Compétences Techniques",
                 certsBtn: "Certifications & Attestations",
+                expBtn: "Mes Expériences",
                 contactBtn: "Me Contacter (Formulaire)",
                 contactTitle: "Contactez-moi",
                 aboutTitle: "À propos de moi",
                 projectsTitle: "Mes Projets",
                 skillsTitle: "Compétences Techniques",
                 certsTitle: "Certifications & Attestations",
+                expTitle: "Mes Expériences Professionnelles",
                 lblName: "Nom complet :",
                 lblEmail: "Adresse Email :",
                 lblMessage: "Message :",
@@ -255,6 +273,12 @@
                     <div class="skill-box">
                         <h3><i class="fas fa-graduation-cap text-yellow"></i> Diplôme TS en Infrastructure Digitale</h3>
                         <p>OFPPT - Spécialité Cloud Computing <em>(En cours d'obtention)</em></p>
+                    </div>`,
+                expBody: `
+                    <div class="skill-box">
+                        <h3><i class="fas fa-rocket text-blue"></i> À la recherche de ma première opportunité</h3>
+                        <p>Actuellement en fin de formation, je suis activement à la recherche de ma <strong>première opportunité professionnelle (Stage ou Premier Emploi)</strong>.</p>
+                        <p style="margin-top: 10px;">Passionné, rigoureux et prêt à relever les défis techniques, <strong>votre entreprise pourrait être le point de départ de mon parcours !</strong> Je suis déterminé à mettre mes compétences en Cloud (Azure/AWS), réseaux et systèmes au service de vos projets.</p>
                     </div>`
             },
             en: {
@@ -265,12 +289,14 @@
                 projectsBtn: "My Projects",
                 skillsBtn: "Technical Skills",
                 certsBtn: "Certifications & Credentials",
+                expBtn: "My Experience",
                 contactBtn: "Contact Me (Form)",
                 contactTitle: "Contact Me",
                 aboutTitle: "About Me",
                 projectsTitle: "My Projects",
                 skillsTitle: "Technical Skills",
                 certsTitle: "Certifications & Credentials",
+                expTitle: "Professional Experience",
                 lblName: "Full Name:",
                 lblEmail: "Email Address:",
                 lblMessage: "Message:",
@@ -306,6 +332,12 @@
                     <div class="skill-box">
                         <h3><i class="fas fa-graduation-cap text-yellow"></i> Specialized Technician Diploma in Digital Infrastructure</h3>
                         <p>OFPPT - Cloud Computing Specialty <em>(In progress)</em></p>
+                    </div>`,
+                expBody: `
+                    <div class="skill-box">
+                        <h3><i class="fas fa-rocket text-blue"></i> Seeking My First Opportunity</h3>
+                        <p>Currently completing my training, I am actively seeking my <strong>first professional opportunity (Internship or Entry-level position)</strong>.</p>
+                        <p style="margin-top: 10px;">Passionate, rigorous, and ready to take on technical challenges, <strong>your company could be the starting point of my career!</strong> I am eager to apply my skills in Cloud (Azure/AWS), networking, and systems to support your projects.</p>
                     </div>`
             },
             ar: {
@@ -316,12 +348,14 @@
                 projectsBtn: "مشاريعي",
                 skillsBtn: "المهارات التقنية",
                 certsBtn: "الشهادات والشواهد",
+                expBtn: "خبراتي المهنية",
                 contactBtn: "تواصل معي (استمارة)",
                 contactTitle: "تواصل معي",
                 aboutTitle: "نبذة عني",
                 projectsTitle: "مشاريعي",
                 skillsTitle: "المهارات التقنية",
                 certsTitle: "الشهادات والشواهد",
+                expTitle: "الخبرات المهنية",
                 lblName: "الاسم الكامل:",
                 lblEmail: "البريد الإلكتروني:",
                 lblMessage: "الرسالة:",
@@ -357,6 +391,12 @@
                     <div class="skill-box">
                         <h3><i class="fas fa-graduation-cap text-yellow"></i> دبلوم تقني متخصص في البنية التحتية الرقمية</h3>
                         <p>مؤسسة OFPPT - تخصص الحوسبة السحابية <em>(في طور الإنجاز)</em></p>
+                    </div>`,
+                expBody: `
+                    <div class="skill-box">
+                        <h3><i class="fas fa-rocket text-blue"></i> البحث عن أول فرصة مهنية</h3>
+                        <p>حالياً في مرحلة نهاية التكوين، وأبحث بجدية عن <strong>أول فرصة مهنية (تدريب Stage أو أول عمل)</strong>.</p>
+                        <p style="margin-top: 10px;">بفضل شغفي والانضباط والجاهزية لتحديات العمل التقني، <strong>قد تكون مؤسستكم أو شركتكم هي المحطة الأولى والبداية الموفقة لمساري المهني!</strong> أنا على أتم الاستعداد لتطبيق مهاراتي في الحوسبة السحابية (Azure/AWS)، الشبكات والأنظمة لخدمة مشاريعكم.</p>
                     </div>`
             }
         };
@@ -367,7 +407,6 @@
                 evt.target.classList.add('active');
             }
 
-            // التبديل بين اليمين واليسار فـ اتجاه النص
             if(lang === 'ar') {
                 document.documentElement.dir = "rtl";
                 document.documentElement.lang = "ar";
@@ -387,6 +426,7 @@
             document.getElementById('btn-skills').innerText = t.skillsBtn;
             document.getElementById('btn-certs').innerText = t.certsBtn;
             document.getElementById('btn-contact').innerText = t.contactBtn;
+            if(document.getElementById('btn-exp')) document.getElementById('btn-exp').innerText = t.expBtn;
             
             // Modal Titles
             document.getElementById('modal-about-title').innerText = t.aboutTitle;
@@ -394,6 +434,7 @@
             document.getElementById('modal-skills-title').innerText = t.skillsTitle;
             document.getElementById('modal-certs-title').innerText = t.certsTitle;
             document.getElementById('modal-contact-title').innerText = t.contactTitle;
+            if(document.getElementById('modal-exp-title')) document.getElementById('modal-exp-title').innerText = t.expTitle;
 
             // Form Labels
             document.getElementById('lbl-name').innerText = t.lblName;
@@ -406,6 +447,7 @@
             document.getElementById('modal-projects-body').innerHTML = t.projectsBody;
             document.getElementById('modal-skills-body').innerHTML = t.skillsBody;
             document.getElementById('modal-certs-body').innerHTML = t.certsBody;
+            if(document.getElementById('modal-exp-body')) document.getElementById('modal-exp-body').innerHTML = t.expBody;
         }
 
         // Initialize default language
