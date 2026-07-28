@@ -1,5 +1,4 @@
 const { Resend } = require('resend');
-const { CosmosClient } = require('@azure/cosmos');
 
 module.exports = async function (context, req) {
     try {
@@ -15,7 +14,7 @@ module.exports = async function (context, req) {
             return;
         }
 
-        // 1. الإرسال عبر Resend
+        // 1. الإرسال عبر Resend (Notification)
         const apiKey = process.env["RESEND_API_KEY"];
         const myGmail = process.env["MY_GMAIL_ADDRESS"];
 
@@ -38,34 +37,61 @@ module.exports = async function (context, req) {
                     `
                 });
             } catch (emailErr) {
-                context.log.error('Email error:', emailErr);
+                context.log.error('Email sending error:', emailErr);
             }
         }
 
-        // 2. الحفظ فـ Cosmos DB
-        const cosmosConn = process.env["CosmosDBConnectionString"];
-        if (cosmosConn) {
+        // 2. تسجيل البيانات فـ Azure Cosmos DB عبر REST API (خفيف ومباشر)
+        const cosmosEndpoint = process.env["COSMOS_ENDPOINT"]; // مثال: https://<your-account>.documents.azure.com:443/
+        const cosmosKey = process.env["COSMOS_KEY"];
+
+        if (cosmosEndpoint && cosmosKey) {
             try {
-                const client = new CosmosClient(cosmosConn);
-                const database = client.database("PortfolioDB");
-                const container = database.container("Messages");
+                const dbId = "PortfolioDB";
+                const containerId = "Messages";
+                const date = new Date().toUTCString();
                 
-                await container.items.create({
+                const newItem = {
                     id: Date.now().toString(),
                     name: name,
                     email: email,
                     message: message,
                     createdAt: new Date().toISOString()
+                };
+
+                // إعداد الـ Headers و Master Key Signature لـ Cosmos DB REST API
+                const crypto = require('crypto');
+                const verb = "post";
+                const resourceType = "docs";
+                const resourceLink = `dbs/${dbId}/colls/${containerId}`;
+                
+                const stringToSign = `${verb}\n${resourceType}\n${resourceLink}\n${date.toLowerCase()}\n\n`;
+                const keyBuffer = Buffer.from(cosmosKey, 'base64');
+                const signature = crypto.createHmac('sha256', keyBuffer).update(stringToSign).digest('base64');
+                const authToken = encodeURIComponent(`type=master&ver=1.0&sig=${signature}`);
+
+                await fetch(`${cosmosEndpoint}${resourceLink}/docs`, {
+                    method: 'POST',
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json',
+                        'x-ms-date': date,
+                        'x-ms-version': '2018-12-31',
+                        'authorization': authToken,
+                        'x-ms-documentdb-is-upsert': 'true',
+                        'x-ms-documentdb-partitionkey': JSON.stringify([newItem.id])
+                    },
+                    body: JSON.stringify(newItem)
                 });
             } catch (dbErr) {
-                context.log.error('Cosmos DB error:', dbErr);
+                context.log.error('Cosmos REST error:', dbErr);
             }
         }
 
         context.res = {
             status: 200,
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ status: "Success", message: "تم إرسال الرسالة وحفظها بنجاح!" })
+            body: JSON.stringify({ status: "Success", message: "تم إرسال الرسالة بنجاح!" })
         };
 
     } catch (error) {
