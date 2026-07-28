@@ -1,4 +1,5 @@
 const { Resend } = require('resend');
+const { CosmosClient } = require('@azure/cosmos');
 
 module.exports = async function (context, req) {
     try {
@@ -14,36 +15,61 @@ module.exports = async function (context, req) {
             return;
         }
 
+        // 1. الإرسال عبر Resend
         const apiKey = process.env["RESEND_API_KEY"];
         const myGmail = process.env["MY_GMAIL_ADDRESS"];
 
         if (apiKey && myGmail) {
-            const resend = new Resend(apiKey);
-            await resend.emails.send({
-                from: 'Portfolio <onboarding@resend.dev>',
-                to: myGmail,
-                subject: `📬 رسالة جديدة من: ${name}`,
-                html: `
-                    <div style="font-family: Arial, sans-serif; padding: 20px; border: 1px solid #1f6feb; border-radius: 10px;">
-                        <h2 style="color: #0078d4;">📬 رسالة جديدة من الـ Portfolio!</h2>
-                        <p><strong>الاسم:</strong> ${name}</p>
-                        <p><strong>الإيميل:</strong> ${email}</p>
-                        <hr style="border: 0.5px solid #ccc; margin: 15px 0;">
-                        <p><strong>الرسالة:</strong></p>
-                        <p style="background: #f4f4f4; padding: 10px; border-radius: 5px; color: #333;">${message}</p>
-                    </div>
-                `
-            });
+            try {
+                const resend = new Resend(apiKey);
+                await resend.emails.send({
+                    from: 'Portfolio <onboarding@resend.dev>',
+                    to: myGmail,
+                    subject: `📬 رسالة جديدة من: ${name}`,
+                    html: `
+                        <div style="font-family: Arial, sans-serif; padding: 20px; border: 1px solid #1f6feb; border-radius: 10px;">
+                            <h2 style="color: #0078d4;">📬 رسالة جديدة من الـ Portfolio!</h2>
+                            <p><strong>الاسم:</strong> ${name}</p>
+                            <p><strong>الإيميل:</strong> ${email}</p>
+                            <hr style="border: 0.5px solid #ccc; margin: 15px 0;">
+                            <p><strong>الرسالة:</strong></p>
+                            <p style="background: #f4f4f4; padding: 10px; border-radius: 5px; color: #333;">${message}</p>
+                        </div>
+                    `
+                });
+            } catch (emailErr) {
+                context.log.error('Email error:', emailErr);
+            }
+        }
+
+        // 2. الحفظ فـ Cosmos DB
+        const cosmosConn = process.env["CosmosDBConnectionString"];
+        if (cosmosConn) {
+            try {
+                const client = new CosmosClient(cosmosConn);
+                const database = client.database("PortfolioDB");
+                const container = database.container("Messages");
+                
+                await container.items.create({
+                    id: Date.now().toString(),
+                    name: name,
+                    email: email,
+                    message: message,
+                    createdAt: new Date().toISOString()
+                });
+            } catch (dbErr) {
+                context.log.error('Cosmos DB error:', dbErr);
+            }
         }
 
         context.res = {
             status: 200,
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ status: "Success", message: "تم إرسال الرسالة بنجاح!" })
+            body: JSON.stringify({ status: "Success", message: "تم إرسال الرسالة وحفظها بنجاح!" })
         };
 
     } catch (error) {
-        context.log.error('Error:', error);
+        context.log.error('General Error:', error);
         context.res = {
             status: 200,
             headers: { "Content-Type": "application/json" },
