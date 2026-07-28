@@ -55,3 +55,263 @@
                 <span id="btn-projects">Mes Projets</span>
                 <i class="fas fa-arrow-right arrow"></i>
             </button>
+
+            <button class="menu-btn btn-yellow" onclick="openModal('skills-modal')">
+                <i class="fas fa-laptop-code"></i>
+                <span id="btn-skills">Compétences Techniques</span>
+                <i class="fas fa-arrow-right arrow"></i>
+            </button>
+
+            <button class="menu-btn btn-red" onclick="openModal('certs-modal')">
+                <i class="fas fa-award"></i>
+                <span id="btn-certs">Certifications & Attestations</span>
+                <i class="fas fa-arrow-right arrow"></i>
+            </button>
+
+            <button class="menu-btn btn-green" onclick="openModal('contact-modal')">
+                <i class="fas fa-paper-plane"></i>
+                <span id="btn-contact">Me Contacter (Formulaire)</span>
+                <i class="fas fa-arrow-right arrow"></i>
+            </button>
+        </nav>
+
+        <footer>
+            <p>© 2026 Ismail El Mizaqi | Propulsé par Microsoft Azure</p>
+        </footer>
+    </div>
+
+    <!-- ===== MODALS ===== -->
+
+    <!-- 1. À propos de moi -->
+    <div id="about-modal" class="modal">
+        <div class="modal-content border-blue">
+            <span class="close-btn" onclick="closeModal('about-modal')">&times;</span>
+            <h2><i class="fas fa-user-circle text-blue"></i> <span id="modal-about-title">À propos de moi</span></h2>
+            <div class="modal-body" id="modal-about-body" style="margin-top: 15px;">
+                <p>Je suis <strong>Ismail El Mizaqi</strong>, étudiant en <strong>Infrastructure Digitale (Option Cloud Computing)</strong> à l'OFPPT (NTIC Safi).</p>
+                <p style="margin-top: 10px;">Passionné par la gestion des systèmes <strong>Linux & Windows Server</strong>, les réseaux informatiques et la mise en place d'architectures Cloud sur <strong>Microsoft Azure</strong>.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 2. Mes Projets -->
+    <div id="projects-modal" class="modal">
+        <div class="modal-content border-purple">
+            <span class="close-btn" onclick="closeModal('projects-modal')">&times;</span>
+            <h2 style="margin-bottom: 15px;"><i class="fas fa-diagram-project text-purple"></i> <span id="modal-projects-title">Mes Projets</span></h2>
+            <div class="modal-body">
+                <div class="skill-box">
+                    <h3><i class="fas fa-cloud text-blue"></i> Azure Static Web App & CI/CD</h3>
+                    <p>Déploiement d'un portfolio interactif sécurisé hébergé sur Microsoft Azure avec automatisation via GitHub Actions.</p>
+                </div>
+                <div class="skill-box">
+                    <h3><i class="fas fa-server text-yellow"></i> Administration Linux & Services Réseau</h3>
+                    <p>Configuration de serveurs Ubuntu (SSH, Telnet, Table de routage) et gestion du réseau local pour un environnement sécurisé.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 3. Compétences Techniques -->
+    <div id="skills-modal" class="modal">
+        <div class="modal-content border-yellow">
+            <span class="close-btn" onclick="closeModal('skills-modal')">&times;</span>
+            <h2 style="margin-bottom: 15px;"><i class="fas fa-laptop-code text-yellow"></i> <span id="modal-skills-title">Compétences Techniques</span></h2>
+            <div class="modal-body">
+                <div class="skill-box">
+                    <h3>Cloud & Virtualisation</h3>
+                    <p>Microsoft Azure, Virtual Machines, Azure Static Web Apps</p>
+                </div>
+                <div class="skill-box">
+                    <h3>Systèmes & Réseaux</h3>
+                    <p>Linux (Ubuntu/Debian), Windows Server, Adressage IP, Routing, SSH & Telnet</p>
+                </div>
+                <div class="skill-box">
+                    <h3>DevOps & Outils</h3>
+                    <p>Git, GitHub Actions, CI/CD Workflows</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 4. Certifications & Attestations -->
+    <div id="certs-modal" class="modal">
+        <div class="modal-content border-red">
+            <span class="close-btn" onclick="closeModal('certs-modal')">&times;</span>
+            <h2 style="margin-bottom: 15px;"><i class="fas fa-award text-red"></i> <span id="modal-certs-title">Certifications & Attestations</span></h2>
+            <div class="modal-body">
+                <div class="skill-box">
+                    <h3><i class="fab fa-microsoft text-blue"></i> Microsoft Azure Fundamentals (AZ-900)</h3>
+                    <p><em>En cours de préparation</em> - Validation des concepts Cloud, sécurité et services Azure.</p>
+                </div>
+                <div class="skill-box">
+                    <h3><i class="fas fa-graduation-cap text-yellow"></i> Diplôme TS en Infrastructure Digitale</h3>
+                    <p>OFPPT - Spécialité Cloud Computing <em>(En cours d'obtention)</em></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 5. Formulaire de Contact avec API -->
+    <div id="contact-modal" class="modal">
+        <div class="modal-content border-green">
+            <span class="close-btn" onclick="closeModal('contact-modal')">&times;</span>
+            <h2 style="margin-bottom: 15px;"><i class="fas fa-envelope text-green"></i> <span id="modal-contact-title">Contactez-moi</span></h2>
+            <div class="modal-body">
+                <div id="form-alert" class="alert-box" style="display: none;"></div>
+                <form id="contact-form" onsubmit="handleFormSubmit(event)">
+                    <div class="form-group">
+                        <label id="lbl-name">Nom complet :</label>
+                        <input type="text" id="input-name" name="name" required placeholder="Votre nom">
+                    </div>
+                    <div class="form-group">
+                        <label id="lbl-email">Adresse Email :</label>
+                        <input type="email" id="input-email" name="email" required placeholder="exemple@mail.com">
+                    </div>
+                    <div class="form-group">
+                        <label id="lbl-message">Message :</label>
+                        <textarea id="input-message" name="message" rows="4" required placeholder="Votre message..."></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn" id="btn-send">Envoyer le message</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function openModal(id) { 
+            document.getElementById(id).style.display = "flex"; 
+        }
+        
+        function closeModal(id) { 
+            document.getElementById(id).style.display = "none";
+            document.getElementById('form-alert').style.display = "none";
+        }
+        
+        window.onclick = function(e) {
+            if (e.target.classList.contains('modal')) { 
+                closeModal(e.target.id); 
+            }
+        }
+
+        async function handleFormSubmit(event) {
+            event.preventDefault();
+            const btn = document.getElementById('btn-send');
+            const alertBox = document.getElementById('form-alert');
+
+            const formData = {
+                name: document.getElementById('input-name').value,
+                email: document.getElementById('input-email').value,
+                message: document.getElementById('input-message').value,
+                date: new Date().toISOString()
+            };
+
+            btn.disabled = true;
+            btn.innerText = "Envoi en cours...";
+
+            try {
+                const response = await fetch("/api/sendMessage", {
+                    method: "POST",
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(formData)
+                });
+
+                if (response.ok) {
+                    alertBox.className = "alert-box alert-success";
+                    alertBox.innerText = "Message envoyé avec succès !";
+                    alertBox.style.display = "block";
+                    document.getElementById('contact-form').reset();
+
+                    setTimeout(() => {
+                        closeModal('contact-modal');
+                        btn.disabled = false;
+                        btn.innerText = "Envoyer le message";
+                    }, 2500);
+                } else {
+                    throw new Error("Erreur lors de l'envoi");
+                }
+            } catch (error) {
+                alertBox.className = "alert-box alert-error";
+                alertBox.innerText = "Désolé, une erreur est survenue. Réessayez!";
+                alertBox.style.display = "block";
+                btn.disabled = false;
+                btn.innerText = "Envoyer le message";
+            }
+        }
+
+        const translations = {
+            fr: {
+                subtitle: "Technicien Spécialisé en Infrastructure Digitale",
+                badge: "Option Cloud Computing",
+                cvBtn: "Télécharger CV",
+                aboutBtn: "À propos de moi",
+                projectsBtn: "Mes Projets",
+                skillsBtn: "Compétences Techniques",
+                certsBtn: "Certifications & Attestations",
+                contactBtn: "Me Contacter (Formulaire)",
+                contactTitle: "Contactez-moi",
+                lblName: "Nom complet :",
+                lblEmail: "Adresse Email :",
+                lblMessage: "Message :",
+                btnSend: "Envoyer le message",
+                aboutBody: "<p>Je suis <strong>Ismail El Mizaqi</strong>, étudiant en <strong>Infrastructure Digitale (Option Cloud Computing)</strong> à l'OFPPT (NTIC Safi).</p><p style='margin-top: 10px;'>Passionné par la gestion des systèmes <strong>Linux & Windows Server</strong>, les réseaux informatiques et la mise en place d'architectures Cloud sur <strong>Microsoft Azure</strong>.</p>"
+            },
+            en: {
+                subtitle: "Specialized Technician in Digital Infrastructure",
+                badge: "Cloud Computing Option",
+                cvBtn: "Download CV",
+                aboutBtn: "About Me",
+                projectsBtn: "My Projects",
+                skillsBtn: "Technical Skills",
+                certsBtn: "Certifications & Credentials",
+                contactBtn: "Contact Me (Form)",
+                contactTitle: "Contact Me",
+                lblName: "Full Name:",
+                lblEmail: "Email Address:",
+                lblMessage: "Message:",
+                btnSend: "Send Message",
+                aboutBody: "<p>I am <strong>Ismail El Mizaqi</strong>, student in <strong>Digital Infrastructure (Cloud Computing Option)</strong> at OFPPT (NTIC Safi).</p><p style='margin-top: 10px;'>Passionate about <strong>Linux & Windows Server</strong> administration, networking, and Cloud architecture deployment on <strong>Microsoft Azure</strong>.</p>"
+            },
+            ar: {
+                subtitle: "تقني متخصص في البنية التحتية الرقمية",
+                badge: "خيار الحوسبة السحابية (Cloud Computing)",
+                cvBtn: "تحميل السيرة الذاتية",
+                aboutBtn: "نبذة عني",
+                projectsBtn: "مشاريعي",
+                skillsBtn: "المهارات التقنية",
+                certsBtn: "الشهادات والشواهد",
+                contactBtn: "تواصل معي (استمارة)",
+                contactTitle: "تواصل معي",
+                lblName: "الاسم الكامل:",
+                lblEmail: "البريد الإلكتروني:",
+                lblMessage: "الرسالة:",
+                btnSend: "إرسال الرسالة",
+                aboutBody: "<p>أنا <strong>إسماعيل الميزاقي</strong>، طالب في تخصص <strong>البنية التحتية الرقمية (خيار الحوسبة السحابية)</strong> بمؤسسة OFPPT (معهد NTIC آسفي).</p><p style='margin-top: 10px;'>شغوف بإدارة أنظمة <strong>Linux و Windows Server</strong>، الشبكات، وبناء الحلول السحابية على منصة <strong>Microsoft Azure</strong>.</p>"
+            }
+        };
+
+        function changeLanguage(lang, evt) {
+            if (evt) {
+                document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+                evt.target.classList.add('active');
+            }
+
+            const t = translations[lang];
+            document.getElementById('txt-subtitle').innerText = t.subtitle;
+            document.getElementById('txt-badge').innerText = t.badge;
+            document.getElementById('btn-cv').innerHTML = `<i class="fas fa-file-arrow-down"></i> ${t.cvBtn}`;
+            document.getElementById('btn-about').innerText = t.aboutBtn;
+            document.getElementById('btn-projects').innerText = t.projectsBtn;
+            document.getElementById('btn-skills').innerText = t.skillsBtn;
+            document.getElementById('btn-certs').innerText = t.certsBtn;
+            document.getElementById('btn-contact').innerText = t.contactBtn;
+            document.getElementById('modal-contact-title').innerText = t.contactTitle;
+            document.getElementById('lbl-name').innerText = t.lblName;
+            document.getElementById('lbl-email').innerText = t.lblEmail;
+            document.getElementById('lbl-message').innerText = t.lblMessage;
+            document.getElementById('btn-send').innerText = t.btnSend;
+            document.getElementById('modal-about-body').innerHTML = t.aboutBody;
+        }
+    </script>
+</body>
+</html>
