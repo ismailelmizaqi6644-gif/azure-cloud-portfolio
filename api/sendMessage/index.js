@@ -42,11 +42,12 @@ module.exports = async function (context, req) {
         }
 
         // 2. تسجيل البيانات فـ Azure Cosmos DB عبر REST API (خفيف ومباشر)
-        const cosmosEndpoint = process.env["COSMOS_ENDPOINT"]; // مثال: https://<your-account>.documents.azure.com:443/
+        const cosmosEndpoint = process.env["COSMOS_ENDPOINT"];
         const cosmosKey = process.env["COSMOS_KEY"];
 
         if (cosmosEndpoint && cosmosKey) {
             try {
+                const cleanEndpoint = cosmosEndpoint.endsWith('/') ? cosmosEndpoint.slice(0, -1) : cosmosEndpoint;
                 const dbId = "PortfolioDB";
                 const containerId = "Messages";
                 const date = new Date().toUTCString();
@@ -59,7 +60,6 @@ module.exports = async function (context, req) {
                     createdAt: new Date().toISOString()
                 };
 
-                // إعداد الـ Headers و Master Key Signature لـ Cosmos DB REST API
                 const crypto = require('crypto');
                 const verb = "post";
                 const resourceType = "docs";
@@ -70,7 +70,7 @@ module.exports = async function (context, req) {
                 const signature = crypto.createHmac('sha256', keyBuffer).update(stringToSign).digest('base64');
                 const authToken = encodeURIComponent(`type=master&ver=1.0&sig=${signature}`);
 
-                await fetch(`${cosmosEndpoint}${resourceLink}/docs`, {
+                await fetch(`${cleanEndpoint}/${resourceLink}/docs`, {
                     method: 'POST',
                     headers: {
                         'Accept': 'application/json',
@@ -79,7 +79,7 @@ module.exports = async function (context, req) {
                         'x-ms-version': '2018-12-31',
                         'authorization': authToken,
                         'x-ms-documentdb-is-upsert': 'true',
-                        'x-ms-documentdb-partitionkey': JSON.stringify([newItem.id])
+                        'x-ms-documentdb-partitionkey': JSON.stringify([newItem.email])
                     },
                     body: JSON.stringify(newItem)
                 });
@@ -103,3 +103,4 @@ module.exports = async function (context, req) {
         };
     }
 };
+     
