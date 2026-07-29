@@ -7,93 +7,145 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* CSS خفيف مخصص لبطاقات الشواهد والألبومات المجمعة */
+        /* ==========================================
+           1. FULLSCREEN MODAL DESIGN (تحسين العرض)
+           ========================================== */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: rgba(15, 23, 42, 0.95);
+            z-index: 9999;
+            overflow-y: auto;
+            backdrop-filter: blur(8px);
+            padding: 0;
+            margin: 0;
+        }
+
+        .modal-content {
+            background: #ffffff;
+            min-height: 100vh;
+            width: 100%;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 25px 20px 40px 20px;
+            box-sizing: border-box;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        /* Responsive Modal Container for Mobile */
+        @media (max-width: 768px) {
+            .modal-content {
+                padding: 20px 15px 30px 15px;
+            }
+        }
+
+        .close-btn {
+            position: sticky;
+            top: 15px;
+            float: right;
+            font-size: 32px;
+            font-weight: bold;
+            color: #475569;
+            cursor: pointer;
+            z-index: 1000;
+            background: #f1f5f9;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            line-height: 1;
+            transition: all 0.2s ease;
+        }
+
+        .close-btn:hover {
+            background: #ef4444;
+            color: white;
+        }
+
+        /* ==========================================
+           2. CERTIFICATES & CARDS STYLING
+           ========================================== */
         .cert-card {
             border: 1px solid #e2e8f0;
-            border-radius: 12px;
-            padding: 18px;
-            margin-bottom: 20px;
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 25px;
             background: #ffffff;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.03);
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
         }
-        .cert-card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 18px rgba(0,0,0,0.08);
+
+        .cert-img-container {
+            width: 100%;
+            background-color: #f8fafc;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid #cbd5e1;
+            margin-bottom: 15px;
+            text-align: center;
         }
+
         .cert-main-img {
             width: 100%;
-            height: auto;
-            border-radius: 8px;
-            margin-bottom: 12px;
+            max-height: 450px;
+            object-fit: contain;
             display: block;
-            border: 1px solid #f1f5f9;
         }
+
         .cert-card h3 {
-            margin: 0 0 8px 0;
-            font-size: 1.15em;
-            color: #1e293b;
-        }
-        .cert-card .sous-titre {
-            margin: 0 0 12px 0;
-            font-size: 0.9em;
-            color: #64748b;
-            line-height: 1.5;
-        }
-        .cert-album {
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-            margin-bottom: 12px;
-        }
-        .album-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            font-size: 0.82em;
-            padding: 6px 12px;
-            background-color: #f1f5f9;
+            margin: 0 0 10px 0;
+            font-size: 1.25em;
             color: #0f172a;
-            border-radius: 6px;
-            text-decoration: none;
-            font-weight: 500;
-            transition: background-color 0.2s ease;
         }
-        .album-link:hover {
-            background-color: #e2e8f0;
+
+        .cert-card .sous-titre {
+            margin: 0 0 15px 0;
+            font-size: 0.95em;
+            color: #475569;
+            line-height: 1.6;
         }
+
         .cert-tags {
             border-top: 1px solid #f1f5f9;
-            padding-top: 10px;
+            padding-top: 12px;
             display: flex;
-            gap: 6px;
+            gap: 8px;
             flex-wrap: wrap;
         }
+
         .cert-tag {
-            padding: 3px 8px;
-            border-radius: 12px;
-            font-size: 0.75em;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.8em;
             font-weight: 600;
         }
-        /* ألوان التاغات */
+
         .tag-excellence { background: #e0f2fe; color: #0369a1; }
         .tag-akademique { background: #dcfce7; color: #15803d; }
         .tag-culture { background: #f3e8ff; color: #6b21a8; }
         .tag-engagement { background: #e0e7ff; color: #3730a3; }
         .tag-leadership { background: #ffedd5; color: #c2410c; }
         .tag-environnement { background: #d1fae5; color: #047857; }
-        
-        /* ضبط سكرول المودال */
-        .modal-body {
-            max-height: 70vh;
-            overflow-y: auto;
-        }
+
+        /* Color Borders for Modals */
+        .border-blue { border-top: 6px solid #2563eb; }
+        .border-purple { border-top: 6px solid #9333ea; }
+        .border-yellow { border-top: 6px solid #eab308; }
+        .border-red { border-top: 6px solid #ef4444; }
+        .border-green { border-top: 6px solid #22c55e; }
+        .border-orange { border-top: 6px solid #f97316; }
     </style>
 </head>
 <body>
 
     <div class="container">
-        <!-- Top Bar: Languages & Download CV & Logout -->
+        <!-- Top Bar: Languages & Download CV -->
         <div class="top-bar">
             <a href="cv.pdf" class="btn-cv" id="btn-cv" download><i class="fas fa-file-arrow-down"></i> Télécharger CV</a>
             
@@ -112,7 +164,7 @@
         <!-- Header Profile -->
         <header class="profile-card">
             <div class="avatar">
-                <img src="profile.jpg" alt="Ismail El Mizaqi" class="profile-img">
+                <img src="profile.jpg" alt="Ismail El Mizaqi" class="profile-img" onerror="this.src='https://via.placeholder.com/150'">
             </div>
             <h1>Ismail El Mizaqi</h1>
             <p class="subtitle" id="txt-subtitle">Technicien Spécialisé en Infrastructure Digitale</p>
@@ -125,7 +177,7 @@
             </div>
         </header>
 
-        <!-- Navigation Buttons -->
+        <!-- Navigation Buttons Grid -->
         <nav class="menu-grid">
             <button class="menu-btn btn-blue" onclick="openModal('about-modal')">
                 <i class="fas fa-user-circle"></i>
@@ -145,19 +197,28 @@
                 <i class="fas fa-arrow-right arrow"></i>
             </button>
 
-            <button class="menu-btn btn-red" onclick="openModal('certs-modal')">
-                <i class="fas fa-award"></i>
-                <span id="btn-certs">Certifications & Attestations</span>
+            <!-- 1. Certifications Académiques -->
+            <button class="menu-btn btn-red" onclick="openModal('academic-modal')">
+                <i class="fas fa-graduation-cap"></i>
+                <span id="btn-academic">Certifications Académiques</span>
                 <i class="fas fa-arrow-right arrow"></i>
             </button>
 
-            <!-- Mes Expériences -->
+            <!-- 2. Attestations & Engagements -->
+            <button class="menu-btn btn-orange" onclick="openModal('engagement-modal')">
+                <i class="fas fa-certificate"></i>
+                <span id="btn-engagement">Attestations & Engagements</span>
+                <i class="fas fa-arrow-right arrow"></i>
+            </button>
+
+            <!-- 3. Mes Expériences -->
             <button class="menu-btn btn-purple" onclick="openModal('exp-modal')">
                 <i class="fas fa-briefcase"></i>
                 <span id="btn-exp">Mes Expériences</span>
                 <i class="fas fa-arrow-right arrow"></i>
             </button>
 
+            <!-- 4. Contact -->
             <button class="menu-btn btn-green" onclick="openModal('contact-modal')">
                 <i class="fas fa-paper-plane"></i>
                 <span id="btn-contact">Me Contacter (Formulaire)</span>
@@ -170,14 +231,15 @@
         </footer>
     </div>
 
-    <!-- ===== MODALS ===== -->
+    <!-- ==================== MODALS FULLSCREEN ==================== -->
 
     <!-- 1. À propos de moi -->
     <div id="about-modal" class="modal">
         <div class="modal-content border-blue">
             <span class="close-btn" onclick="closeModal('about-modal')">&times;</span>
             <h2><i class="fas fa-user-circle text-blue"></i> <span id="modal-about-title">À propos de moi</span></h2>
-            <div class="modal-body" id="modal-about-body" style="margin-top: 15px;"></div>
+            <hr style="margin: 15px 0; border: none; border-top: 1px solid #e2e8f0;">
+            <div class="modal-body" id="modal-about-body"></div>
         </div>
     </div>
 
@@ -185,7 +247,8 @@
     <div id="projects-modal" class="modal">
         <div class="modal-content border-purple">
             <span class="close-btn" onclick="closeModal('projects-modal')">&times;</span>
-            <h2 style="margin-bottom: 15px;"><i class="fas fa-diagram-project text-purple"></i> <span id="modal-projects-title">Mes Projets</span></h2>
+            <h2><i class="fas fa-diagram-project text-purple"></i> <span id="modal-projects-title">Mes Projets</span></h2>
+            <hr style="margin: 15px 0; border: none; border-top: 1px solid #e2e8f0;">
             <div class="modal-body" id="modal-projects-body"></div>
         </div>
     </div>
@@ -194,34 +257,48 @@
     <div id="skills-modal" class="modal">
         <div class="modal-content border-yellow">
             <span class="close-btn" onclick="closeModal('skills-modal')">&times;</span>
-            <h2 style="margin-bottom: 15px;"><i class="fas fa-laptop-code text-yellow"></i> <span id="modal-skills-title">Compétences Techniques</span></h2>
+            <h2><i class="fas fa-laptop-code text-yellow"></i> <span id="modal-skills-title">Compétences Techniques</span></h2>
+            <hr style="margin: 15px 0; border: none; border-top: 1px solid #e2e8f0;">
             <div class="modal-body" id="modal-skills-body"></div>
         </div>
     </div>
 
-    <!-- 4. Certifications & Attestations -->
-    <div id="certs-modal" class="modal">
+    <!-- 4. Certifications Académiques -->
+    <div id="academic-modal" class="modal">
         <div class="modal-content border-red">
-            <span class="close-btn" onclick="closeModal('certs-modal')">&times;</span>
-            <h2 style="margin-bottom: 15px;"><i class="fas fa-award text-red"></i> <span id="modal-certs-title">Certifications & Attestations</span></h2>
-            <div class="modal-body" id="modal-certs-body"></div>
+            <span class="close-btn" onclick="closeModal('academic-modal')">&times;</span>
+            <h2><i class="fas fa-graduation-cap text-red"></i> <span id="modal-academic-title">Certifications Académiques</span></h2>
+            <hr style="margin: 15px 0; border: none; border-top: 1px solid #e2e8f0;">
+            <div class="modal-body" id="modal-academic-body"></div>
         </div>
     </div>
 
-    <!-- 5. Mes Expériences -->
+    <!-- 5. Attestations & Engagements -->
+    <div id="engagement-modal" class="modal">
+        <div class="modal-content border-orange">
+            <span class="close-btn" onclick="closeModal('engagement-modal')">&times;</span>
+            <h2><i class="fas fa-certificate text-orange"></i> <span id="modal-engagement-title">Attestations & Engagements</span></h2>
+            <hr style="margin: 15px 0; border: none; border-top: 1px solid #e2e8f0;">
+            <div class="modal-body" id="modal-engagement-body"></div>
+        </div>
+    </div>
+
+    <!-- 6. Mes Expériences -->
     <div id="exp-modal" class="modal">
         <div class="modal-content border-purple">
             <span class="close-btn" onclick="closeModal('exp-modal')">&times;</span>
-            <h2 style="margin-bottom: 15px;"><i class="fas fa-briefcase text-purple"></i> <span id="modal-exp-title">Mes Expériences</span></h2>
+            <h2><i class="fas fa-briefcase text-purple"></i> <span id="modal-exp-title">Mes Expériences</span></h2>
+            <hr style="margin: 15px 0; border: none; border-top: 1px solid #e2e8f0;">
             <div class="modal-body" id="modal-exp-body"></div>
         </div>
     </div>
 
-    <!-- 6. Formulaire de Contact -->
+    <!-- 7. Formulaire de Contact -->
     <div id="contact-modal" class="modal">
         <div class="modal-content border-green">
             <span class="close-btn" onclick="closeModal('contact-modal')">&times;</span>
-            <h2 style="margin-bottom: 15px;"><i class="fas fa-envelope text-green"></i> <span id="modal-contact-title">Contactez-moi</span></h2>
+            <h2><i class="fas fa-envelope text-green"></i> <span id="modal-contact-title">Contactez-moi</span></h2>
+            <hr style="margin: 15px 0; border: none; border-top: 1px solid #e2e8f0;">
             <div class="modal-body">
                 <div id="form-alert" class="alert-box" style="display: none;"></div>
                 <form id="contact-form" onsubmit="handleFormSubmit(event)">
@@ -235,7 +312,7 @@
                     </div>
                     <div class="form-group">
                         <label id="lbl-message">Message :</label>
-                        <textarea id="input-message" name="message" rows="4" required placeholder="Votre message..."></textarea>
+                        <textarea id="input-message" name="message" rows="5" required placeholder="Votre message..."></textarea>
                     </div>
                     <button type="submit" class="submit-btn" id="btn-send">Envoyer le message</button>
                 </form>
@@ -245,18 +322,14 @@
 
     <script>
         function openModal(id) { 
-            document.getElementById(id).style.display = "flex"; 
+            document.getElementById(id).style.display = "block";
+            document.body.style.overflow = "hidden"; // منع السكرول فـ الخلفية
         }
         
         function closeModal(id) { 
             document.getElementById(id).style.display = "none";
+            document.body.style.overflow = "auto";
             document.getElementById('form-alert').style.display = "none";
-        }
-        
-        window.onclick = function(e) {
-            if (e.target.classList.contains('modal')) { 
-                closeModal(e.target.id); 
-            }
         }
 
         async function handleFormSubmit(event) {
@@ -293,11 +366,11 @@
                         btn.innerText = "Envoyer le message";
                     }, 2500);
                 } else {
-                    throw new Error("Erreur lors de l'envoi");
+                    throw new Error("Erreur");
                 }
             } catch (error) {
                 alertBox.className = "alert-box alert-error";
-                alertBox.innerText = "Désolé, une erreur est survenue. Réessayez!";
+                alertBox.innerText = "Une erreur est survenue lors de l'envoi.";
                 alertBox.style.display = "block";
                 btn.disabled = false;
                 btn.innerText = "Envoyer le message";
@@ -312,20 +385,22 @@
                 aboutBtn: "À propos de moi",
                 projectsBtn: "Mes Projets",
                 skillsBtn: "Compétences Techniques",
-                certsBtn: "Certifications & Attestations",
+                academicBtn: "Certifications Académiques",
+                engagementBtn: "Attestations & Engagements",
                 expBtn: "Mes Expériences",
                 contactBtn: "Me Contacter (Formulaire)",
                 contactTitle: "Contactez-moi",
                 aboutTitle: "À propos de moi",
                 projectsTitle: "Mes Projets",
                 skillsTitle: "Compétences Techniques",
-                certsTitle: "Certifications & Attestations",
+                academicTitle: "Certifications Académiques",
+                engagementTitle: "Attestations & Engagements Associatifs",
                 expTitle: "Mes Expériences Professionnelles",
                 lblName: "Nom complet :",
                 lblEmail: "Adresse Email :",
                 lblMessage: "Message :",
                 btnSend: "Envoyer le message",
-                aboutBody: "<p>Bonjour, c'est un plaisir de me présenter. Je m'appelle <strong>Ismail El Mizaqi</strong>, étudiant en <strong>Infrastructure Digitale (Option Cloud Computing)</strong> à l'NTIC Safi (OFPPT).</p><p style='margin-top: 10px;'>Je me spécialise dans la conception et la sécurisation des réseaux informatiques ainsi que la gestion des environnements Cloud (sur des plateformes telles que <strong>Microsoft Azure</strong> et <strong>AWS</strong>), en plus de l'administration <strong>Linux & Windows Server</strong> et l'automatisation des infrastructures. J'ambitionne constamment de développer mes compétences et de les appliquer sur des projets concrets.</p>",
+                aboutBody: "<p>Bonjour, c'est un plaisir de me présenter. Je m'appelle <strong>Ismail El Mizaqi</strong>, étudiant en <strong>Infrastructure Digitale (Option Cloud Computing)</strong> à l'NTIC Safi (OFPPT).</p><p style='margin-top: 10px;'>Je me spécialise dans la conception et la sécurisation des réseaux informatiques ainsi que la gestion des environnements Cloud (sur des plateformes telles que <strong>Microsoft Azure</strong> et <strong>AWS</strong>), en plus de l'administration <strong>Linux & Windows Server</strong> et l'automatisation des infrastructures.</p>",
                 projectsBody: `
                     <div class="skill-box">
                         <h3><i class="fas fa-cloud text-blue"></i> Azure Static Web App & CI/CD</h3>
@@ -348,52 +423,56 @@
                         <h3>DevOps & Outils</h3>
                         <p>Git, GitHub Actions, CI/CD Workflows</p>
                     </div>`,
-                certsBody: `
+                academicBody: `
                     <!-- 1. Excellence Académique -->
                     <div class="cert-card">
-                        <img src="excellence-2022-1.jpg" alt="Prix d'Excellence Académique" class="cert-main-img">
-                        <h3>Excellence & Distinctions Académiques</h3>
-                        <p class="sous-titre">Collection de distinctions célébrant les excellents résultats scolaires (Moyenne 16.71/20).</p>
-                        <div class="cert-album">
-                            <a href="excellence-2022-2.jpg" target="_blank" class="album-link"><i class="fas fa-image"></i> Voir Attestation (Photo 2)</a>
-                            <a href="excellence-2022-3.jpg" target="_blank" class="album-link"><i class="fas fa-image"></i> Voir Prix (Photo 3)</a>
+                        <div class="cert-img-container">
+                            <img src="excellence-2022-1.jpg" alt="Prix d'Excellence Académique" class="cert-main-img" onerror="this.src='https://via.placeholder.com/800x500?text=Excellence+Academique+Photo+1'">
                         </div>
+                        <h3>Attestation d'Excellence & Distinction Académique</h3>
+                        <p class="sous-titre">Attestation célébrant les excellents résultats scolaires et l'obtention des meilleures notes (Moyenne 16.71/20).</p>
+                        
+                        <div class="cert-img-container">
+                            <img src="excellence-2022-2.jpg" alt="Attestation de Réussite" class="cert-main-img" onerror="this.src='https://via.placeholder.com/800x500?text=Excellence+Academique+Photo+2'">
+                        </div>
+                        
                         <div class="cert-tags">
                             <span class="cert-tag tag-excellence">#Excellence</span>
                             <span class="cert-tag tag-akademique">#Académique</span>
+                        </div>
+                    </div>`,
+                engagementBody: `
+                    <!-- 1. Leadership et Développement Durable -->
+                    <div class="cert-card">
+                        <div class="cert-img-container">
+                            <img src="eco-club-2022.jpg" alt="Attestation Coordinateur Club Développement Durable" class="cert-main-img" onerror="this.src='https://via.placeholder.com/800x500?text=Attestation+Coordinateur+Club'">
+                        </div>
+                        <h3>Leadership & Coordination — Club Développement Durable 🌱</h3>
+                        <p class="sous-titre">Attestation officielle de remerciement et de félicitations pour le rôle de <strong>Coordinateur du Club de Développement Durable</strong> et pour la participation active aux activités éducatives et environnementales.</p>
+                        <div class="cert-tags">
+                            <span class="cert-tag tag-leadership">#Leadership</span>
+                            <span class="cert-tag tag-engagement">#Coordination</span>
+                            <span class="cert-tag tag-environnement">#DéveloppementDurable</span>
                         </div>
                     </div>
 
                     <!-- 2. Activités Culturelles -->
                     <div class="cert-card">
-                        <img src="culture-2022-1.jpg" alt="Certificat Concours Culturel & Coran" class="cert-main-img">
-                        <h3>Activités Culturelles & Animation</h3>
-                        <p class="sous-titre">Participation distinguée aux concours culturels (Récitation du Coran) et animation des événements scolaires.</p>
-                        <div class="cert-album">
-                            <a href="culture-2022-2.jpg" target="_blank" class="album-link"><i class="fas fa-image"></i> Voir Attestation Culturelle (Photo 2)</a>
+                        <div class="cert-img-container">
+                            <img src="culture-2022-1.jpg" alt="Certificat Concours Culturel" class="cert-main-img" onerror="this.src='https://via.placeholder.com/800x500?text=Attestation+Activites+Culturelles'">
                         </div>
+                        <h3>Activités Culturelles & Animation</h3>
+                        <p class="sous-titre">Participation distinguée aux concours culturels (Récitation du Coran) et à l'organisation et animation des événements scolaires.</p>
                         <div class="cert-tags">
                             <span class="cert-tag tag-culture">#Culture</span>
                             <span class="cert-tag tag-engagement">#Engagement</span>
-                        </div>
-                    </div>
-
-                    <!-- 3. Leadership et Développement Durable -->
-                    <div class="cert-card">
-                        <img src="eco-club-2022.jpg" alt="Attestation Coordinateur Club Développement Durable" class="cert-main-img">
-                        <h3>Leadership & Coordination — Développement Durable 🌱</h3>
-                        <p class="sous-titre">Attestation officielle de remerciement et de félicitations pour le rôle de <strong>Coordinateur du Club de Développement Durable</strong> et pour la participation active aux activités éducatives.</p>
-                        <div class="cert-tags">
-                            <span class="cert-tag tag-leadership">#Leadership</span>
-                            <span class="cert-tag tag-engagement">#Coordination</span>
-                            <span class="cert-tag tag-environnement">#DéveloppementDurable</span>
                         </div>
                     </div>`,
                 expBody: `
                     <div class="skill-box">
                         <h3><i class="fas fa-rocket text-blue"></i> À la recherche de ma première opportunité</h3>
                         <p>Actuellement en fin de formation, je suis activement à la recherche de ma <strong>première opportunité professionnelle (Stage ou Premier Emploi)</strong>.</p>
-                        <p style="margin-top: 10px;">Passionné, rigoureux et prêt à relever les défis techniques, <strong>votre entreprise pourrait être le point de départ de mon parcours !</strong> Je suis déterminé à mettre mes compétences en Cloud (Azure/AWS), réseaux et systèmes au service de vos projets.</p>
+                        <p style="margin-top: 10px;">Passionné, rigoureux et prêt à relever les défis techniques, je suis déterminé à mettre mes compétences en Cloud (Azure/AWS), réseaux et systèmes au service de vos projets.</p>
                     </div>`
             },
             en: {
@@ -403,88 +482,60 @@
                 aboutBtn: "About Me",
                 projectsBtn: "My Projects",
                 skillsBtn: "Technical Skills",
-                certsBtn: "Certifications & Credentials",
+                academicBtn: "Academic Certifications",
+                engagementBtn: "Attestations & Engagements",
                 expBtn: "My Experience",
                 contactBtn: "Contact Me (Form)",
                 contactTitle: "Contact Me",
                 aboutTitle: "About Me",
                 projectsTitle: "My Projects",
                 skillsTitle: "Technical Skills",
-                certsTitle: "Certifications & Credentials",
+                academicTitle: "Academic Certifications",
+                engagementTitle: "Attestations & Engagements",
                 expTitle: "Professional Experience",
                 lblName: "Full Name:",
                 lblEmail: "Email Address:",
                 lblMessage: "Message:",
                 btnSend: "Send Message",
-                aboutBody: "<p>Hello, I am pleased to introduce myself. My name is <strong>Ismail El Mizaqi</strong>, studying <strong>Digital Infrastructure (Cloud Computing Option)</strong> at NTIC Safi (OFPPT).</p><p style='margin-top: 10px;'>I specialize in designing and securing computer networks and managing Cloud environments (on platforms such as <strong>Microsoft Azure</strong> and <strong>AWS</strong>), alongside <strong>Linux & Windows Server</strong> administration and infrastructure automation. I constantly strive to develop my skills and apply them to promising practical projects.</p>",
+                aboutBody: "<p>Hello, I am pleased to introduce myself. My name is <strong>Ismail El Mizaqi</strong>, studying <strong>Digital Infrastructure (Cloud Computing Option)</strong> at NTIC Safi (OFPPT).</p>",
                 projectsBody: `
                     <div class="skill-box">
                         <h3><i class="fas fa-cloud text-blue"></i> Azure Static Web App & CI/CD</h3>
                         <p>Deployment of a secure interactive portfolio hosted on Microsoft Azure with automation via GitHub Actions.</p>
-                    </div>
-                    <div class="skill-box">
-                        <h3><i class="fas fa-server text-yellow"></i> Linux Administration & Network Services</h3>
-                        <p>Configuration of Ubuntu servers (SSH, Telnet, Routing Tables) and local network management for a secure environment.</p>
                     </div>`,
                 skillsBody: `
                     <div class="skill-box">
                         <h3>Cloud & Virtualization</h3>
                         <p>Microsoft Azure, Virtual Machines, Azure Static Web Apps</p>
-                    </div>
-                    <div class="skill-box">
-                        <h3>Systems & Networks</h3>
-                        <p>Linux (Ubuntu/Debian), Windows Server, IP Addressing, Routing, SSH & Telnet</p>
-                    </div>
-                    <div class="skill-box">
-                        <h3>DevOps & Tools</h3>
-                        <p>Git, GitHub Actions, CI/CD Workflows</p>
                     </div>`,
-                certsBody: `
-                    <!-- 1. Academic Excellence -->
+                academicBody: `
                     <div class="cert-card">
-                        <img src="excellence-2022-1.jpg" alt="Academic Excellence Award" class="cert-main-img">
-                        <h3>Academic Excellence & Distinctions</h3>
-                        <p class="sous-titre">Collection of awards celebrating outstanding academic achievements (GPA 16.71/20).</p>
-                        <div class="cert-album">
-                            <a href="excellence-2022-2.jpg" target="_blank" class="album-link"><i class="fas fa-image"></i> View Certificate (Photo 2)</a>
-                            <a href="excellence-2022-3.jpg" target="_blank" class="album-link"><i class="fas fa-image"></i> View Award (Photo 3)</a>
+                        <div class="cert-img-container">
+                            <img src="excellence-2022-1.jpg" alt="Academic Excellence Award" class="cert-main-img" onerror="this.src='https://via.placeholder.com/800x500?text=Academic+Excellence+Photo+1'">
                         </div>
+                        <h3>Academic Excellence & Distinction Certificate</h3>
+                        <p class="sous-titre">Official certificate celebrating outstanding academic achievements (GPA 16.71/20).</p>
                         <div class="cert-tags">
                             <span class="cert-tag tag-excellence">#Excellence</span>
                             <span class="cert-tag tag-akademique">#Academic</span>
                         </div>
-                    </div>
-
-                    <!-- 2. Cultural Activities -->
+                    </div>`,
+                engagementBody: `
                     <div class="cert-card">
-                        <img src="culture-2022-1.jpg" alt="Cultural Competition Certificate" class="cert-main-img">
-                        <h3>Cultural Activities & Event Host</h3>
-                        <p class="sous-titre">Distinguished participation in cultural competitions (Quran recitation) and hosting school events.</p>
-                        <div class="cert-album">
-                            <a href="culture-2022-2.jpg" target="_blank" class="album-link"><i class="fas fa-image"></i> View Cultural Certificate (Photo 2)</a>
+                        <div class="cert-img-container">
+                            <img src="eco-club-2022.jpg" alt="Sustainable Development Club Certificate" class="cert-main-img" onerror="this.src='https://via.placeholder.com/800x500?text=Sustainable+Development+Club'">
                         </div>
-                        <div class="cert-tags">
-                            <span class="cert-tag tag-culture">#Culture</span>
-                            <span class="cert-tag tag-engagement">#Engagement</span>
-                        </div>
-                    </div>
-
-                    <!-- 3. Leadership & Sustainable Development -->
-                    <div class="cert-card">
-                        <img src="eco-club-2022.jpg" alt="Sustainable Development Club Coordinator Certificate" class="cert-main-img">
                         <h3>Leadership & Coordination — Sustainable Development 🌱</h3>
-                        <p class="sous-titre">Official certificate of appreciation for serving as the <strong>Coordinator of the Sustainable Development Club</strong> and actively participating in educational activities.</p>
+                        <p class="sous-titre">Official appreciation certificate for serving as Coordinator of the Sustainable Development Club.</p>
                         <div class="cert-tags">
                             <span class="cert-tag tag-leadership">#Leadership</span>
-                            <span class="cert-tag tag-engagement">#Coordination</span>
                             <span class="cert-tag tag-environnement">#SustainableDev</span>
                         </div>
                     </div>`,
                 expBody: `
                     <div class="skill-box">
                         <h3><i class="fas fa-rocket text-blue"></i> Seeking My First Opportunity</h3>
-                        <p>Currently completing my training, I am actively seeking my <strong>first professional opportunity (Internship or Entry-level position)</strong>.</p>
-                        <p style="margin-top: 10px;">Passionate, rigorous, and ready to take on technical challenges, <strong>your company could be the starting point of my career!</strong> I am eager to apply my skills in Cloud (Azure/AWS), networking, and systems to support your projects.</p>
+                        <p>I am actively seeking my <strong>first professional opportunity (Internship or Entry-level position)</strong>.</p>
                     </div>`
             },
             ar: {
@@ -494,88 +545,73 @@
                 aboutBtn: "نبذة عني",
                 projectsBtn: "مشاريعي",
                 skillsBtn: "المهارات التقنية",
-                certsBtn: "الشهادات والشواهد",
+                academicBtn: "الشهادات الأكاديمية والتفوق",
+                engagementBtn: "الشهادات والالتزامات الجمعوية",
                 expBtn: "خبراتي المهنية",
                 contactBtn: "تواصل معي (استمارة)",
                 contactTitle: "تواصل معي",
                 aboutTitle: "نبذة عني",
                 projectsTitle: "مشاريعي",
                 skillsTitle: "المهارات التقنية",
-                certsTitle: "الشهادات والشواهد",
+                academicTitle: "الشهادات والتميز الأكاديمي",
+                engagementTitle: "الشهادات والالتزامات الجمعوية والأنشطة",
                 expTitle: "الخبرات المهنية",
                 lblName: "الاسم الكامل:",
                 lblEmail: "البريد الإلكتروني:",
                 lblMessage: "الرسالة:",
                 btnSend: "إرسال الرسالة",
-                aboutBody: "<p>مرحباً، يشرفني أن أعرّفكم بنفسي. اسمي <strong>إسماعيل الميزاقي</strong>، طالب بشعبة <strong>البنية التحتية الرقمية (خيار الحوسبة السحابية)</strong> بالمعهد المتخصص في تقنيات الإعلام والتواصل بآسفي (<strong>NTIC Safi - OFPPT</strong>).</p><p style='margin-top: 10px;'>أتخصص في تصميم وتأمين شبكات المعلومات وإدارة الأنظمة السحابية (على منصات مثل <strong>Microsoft Azure</strong> و <strong>AWS</strong>)، بالإضافة إلى إدارة سيرفرات <strong>Linux & Windows Server</strong> وأتمتة البنيات التحتية لتوفير حلول رقمية متكاملة وعالية الأداء. وأطمح باستمرار لتطوير مهاراتي وتطبيقها في مشاريع عملية واعدة.</p>",
+                aboutBody: "<p>مرحباً، يشرفني أن أعرّفكم بنفسي. اسمي <strong>إسماعيل الميزاقي</strong>، طالب بشعبة <strong>البنية التحتية الرقمية (خيار الحوسبة السحابية)</strong> بالمعهد المتخصص في تقنيات الإعلام والتواصل بآسفي (<strong>NTIC Safi - OFPPT</strong>).</p>",
                 projectsBody: `
                     <div class="skill-box">
                         <h3><i class="fas fa-cloud text-blue"></i> Azure Static Web App & CI/CD</h3>
                         <p>نشر موقع شخصي تفاعلي وآمن مستضاف على Microsoft Azure مع الأتمتة باستخدام GitHub Actions.</p>
-                    </div>
-                    <div class="skill-box">
-                        <h3><i class="fas fa-server text-yellow"></i> إدارة أنظمة Linux وخدمات الشبكة</h3>
-                        <p>إعداد خوادم Ubuntu (SSH, Telnet, جدول التوجيه Routing Table) وإدارة الشبكة المحلية لبيئة آمنة.</p>
                     </div>`,
                 skillsBody: `
                     <div class="skill-box">
                         <h3>الحوسبة السحابية والافتراضية (Cloud & Virtualization)</h3>
                         <p>Microsoft Azure, Virtual Machines, Azure Static Web Apps</p>
-                    </div>
-                    <div class="skill-box">
-                        <h3>الأنظمة والشبكات</h3>
-                        <p>Linux (Ubuntu/Debian), Windows Server, العنونة IP, Routing, SSH & Telnet</p>
-                    </div>
-                    <div class="skill-box">
-                        <h3>DevOps والأدوات</h3>
-                        <p>Git, GitHub Actions, مسارات العمل CI/CD</p>
                     </div>`,
-                certsBody: `
-                    <!-- 1. التفوق الدراسي -->
+                academicBody: `
                     <div class="cert-card">
-                        <img src="excellence-2022-1.jpg" alt="جائزة التفوق الدراسي" class="cert-main-img">
-                        <h3>التفوق والتميز الدراسي</h3>
-                        <p class="sous-titre">مجموعة من الجوائز والشهادات التقديرية للتفوق الدراسي والحصول على نتائج متميزة (معدل 16.71/20).</p>
-                        <div class="cert-album">
-                            <a href="excellence-2022-2.jpg" target="_blank" class="album-link"><i class="fas fa-image"></i> عرض الشهادة (صورة 2)</a>
-                            <a href="excellence-2022-3.jpg" target="_blank" class="album-link"><i class="fas fa-image"></i> عرض التذكار (صورة 3)</a>
+                        <div class="cert-img-container">
+                            <img src="excellence-2022-1.jpg" alt="جائزة التفوق الدراسي" class="cert-main-img" onerror="this.src='https://via.placeholder.com/800x500?text=Excellence+Photo+1'">
+                        </div>
+                        <h3>شهادة التميز والتفوق الدراسي</h3>
+                        <p class="sous-titre">شهادة تقديرية مخصصة للنتائج الدراسية المتميزة والتفوق (معدل 16.71/20).</p>
+                        <div class="cert-img-container">
+                            <img src="excellence-2022-2.jpg" alt="شهادة التفوق" class="cert-main-img" onerror="this.src='https://via.placeholder.com/800x500?text=Excellence+Photo+2'">
                         </div>
                         <div class="cert-tags">
                             <span class="cert-tag tag-excellence">#التفوق</span>
                             <span class="cert-tag tag-akademique">#تميز_دراسي</span>
                         </div>
-                    </div>
-
-                    <!-- 2. الأنشطة الثقافية -->
+                    </div>`,
+                engagementBody: `
                     <div class="cert-card">
-                        <img src="culture-2022-1.jpg" alt="شهادة المسابقة الثقافية والقرآن" class="cert-main-img">
-                        <h3>الأنشطة الثقافية والتنشيط</h3>
-                        <p class="sous-titre">مشاركة متميزة في المسابقات الثقافية (تجويد القرآن الكريم) وتنشيط الفعاليات المدرسية.</p>
-                        <div class="cert-album">
-                            <a href="culture-2022-2.jpg" target="_blank" class="album-link"><i class="fas fa-image"></i> عرض الشهادة الثقافية (صورة 2)</a>
+                        <div class="cert-img-container">
+                            <img src="eco-club-2022.jpg" alt="شهادة منسق نادي التنمية المستدامة" class="cert-main-img" onerror="this.src='https://via.placeholder.com/800x500?text=Eco+Club+Photo'">
                         </div>
-                        <div class="cert-tags">
-                            <span class="cert-tag tag-culture">#أنشطة_ثقافية</span>
-                            <span class="cert-tag tag-engagement">#مشاركة_فعالة</span>
-                        </div>
-                    </div>
-
-                    <!-- 3. القيادة والتنمية المستدامة -->
-                    <div class="cert-card">
-                        <img src="eco-club-2022.jpg" alt="شهادة منسق نادي التنمية المستدامة" class="cert-main-img">
                         <h3>القيادة والتنسيق — نادي التنمية المستدامة 🌱</h3>
-                        <p class="sous-titre">شهادة تقدير وتنويه رسمية بصفتي <strong>منسق نادي التنمية المستدامة</strong> والمشاركة الفعالة فالمسابقات والأنشطة التربوية.</p>
+                        <p class="sous-titre">شهادة تقدير وتنويه رسمية بصفتي <strong>منسق نادي التنمية المستدامة</strong> والمشاركة الفعالة في الأنشطة التربوية والبيئية.</p>
                         <div class="cert-tags">
                             <span class="cert-tag tag-leadership">#قيادة</span>
-                            <span class="cert-tag tag-engagement">#تنسيق</span>
                             <span class="cert-tag tag-environnement">#تنمية_مستدامة</span>
+                        </div>
+                    </div>
+                    <div class="cert-card">
+                        <div class="cert-img-container">
+                            <img src="culture-2022-1.jpg" alt="الأنشطة الثقافية" class="cert-main-img" onerror="this.src='https://via.placeholder.com/800x500?text=Culture+Photo'">
+                        </div>
+                        <h3>الأنشطة الثقافية والتنشيط</h3>
+                        <p class="sous-titre">مشاركة متميزة في المسابقات الثقافية وتنشيط الفعاليات والمناسبات.</p>
+                        <div class="cert-tags">
+                            <span class="cert-tag tag-culture">#أنشطة_ثقافية</span>
                         </div>
                     </div>`,
                 expBody: `
                     <div class="skill-box">
                         <h3><i class="fas fa-rocket text-blue"></i> البحث عن أول فرصة مهنية</h3>
                         <p>حالياً في مرحلة نهاية التكوين، وأبحث بجدية عن <strong>أول فرصة مهنية (تدريب Stage أو أول عمل)</strong>.</p>
-                        <p style="margin-top: 10px;">بفضل شغفي والانضباط والجاهزية لتحديات العمل التقني، <strong>قد تكون مؤسستكم أو شركتكم هي المحطة الأولى والبداية الموفقة لمساري المهني!</strong> أنا على أتم الاستعداد لتطبيق مهاراتي في الحوسبة السحابية (Azure/AWS)، الشبكات والأنظمة لخدمة مشاريعكم.</p>
                     </div>`
             }
         };
@@ -596,22 +632,24 @@
 
             const t = translations[lang];
             
-            // Header & Buttons
+            // Header & Navigation
             document.getElementById('txt-subtitle').innerText = t.subtitle;
             document.getElementById('txt-badge').innerText = t.badge;
             document.getElementById('btn-cv').innerHTML = `<i class="fas fa-file-arrow-down"></i> ${t.cvBtn}`;
             document.getElementById('btn-about').innerText = t.aboutBtn;
             document.getElementById('btn-projects').innerText = t.projectsBtn;
             document.getElementById('btn-skills').innerText = t.skillsBtn;
-            document.getElementById('btn-certs').innerText = t.certsBtn;
+            document.getElementById('btn-academic').innerText = t.academicBtn;
+            document.getElementById('btn-engagement').innerText = t.engagementBtn;
             document.getElementById('btn-contact').innerText = t.contactBtn;
             if(document.getElementById('btn-exp')) document.getElementById('btn-exp').innerText = t.expBtn;
             
-            // Modal Titles
+            // Titles
             document.getElementById('modal-about-title').innerText = t.aboutTitle;
             document.getElementById('modal-projects-title').innerText = t.projectsTitle;
             document.getElementById('modal-skills-title').innerText = t.skillsTitle;
-            document.getElementById('modal-certs-title').innerText = t.certsTitle;
+            document.getElementById('modal-academic-title').innerText = t.academicTitle;
+            document.getElementById('modal-engagement-title').innerText = t.engagementTitle;
             document.getElementById('modal-contact-title').innerText = t.contactTitle;
             if(document.getElementById('modal-exp-title')) document.getElementById('modal-exp-title').innerText = t.expTitle;
 
@@ -621,15 +659,15 @@
             document.getElementById('lbl-message').innerText = t.lblMessage;
             document.getElementById('btn-send').innerText = t.btnSend;
 
-            // Dynamic Modal Bodies
+            // Content Loading
             document.getElementById('modal-about-body').innerHTML = t.aboutBody;
             document.getElementById('modal-projects-body').innerHTML = t.projectsBody;
             document.getElementById('modal-skills-body').innerHTML = t.skillsBody;
-            document.getElementById('modal-certs-body').innerHTML = t.certsBody;
+            document.getElementById('modal-academic-body').innerHTML = t.academicBody;
+            document.getElementById('modal-engagement-body').innerHTML = t.engagementBody;
             if(document.getElementById('modal-exp-body')) document.getElementById('modal-exp-body').innerHTML = t.expBody;
         }
 
-        // Initialize default language
         changeLanguage('fr');
     </script>
 </body>
