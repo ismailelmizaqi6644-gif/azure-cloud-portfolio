@@ -6,6 +6,89 @@
     <title>Ismail El Mizaqi | Cloud Portfolio</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* CSS خفيف مخصص لبطاقات الشواهد والألبومات المجمعة */
+        .cert-card {
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 18px;
+            margin-bottom: 20px;
+            background: #ffffff;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .cert-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 18px rgba(0,0,0,0.08);
+        }
+        .cert-main-img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin-bottom: 12px;
+            display: block;
+            border: 1px solid #f1f5f9;
+        }
+        .cert-card h3 {
+            margin: 0 0 8px 0;
+            font-size: 1.15em;
+            color: #1e293b;
+        }
+        .cert-card .sous-titre {
+            margin: 0 0 12px 0;
+            font-size: 0.9em;
+            color: #64748b;
+            line-height: 1.5;
+        }
+        .cert-album {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 12px;
+        }
+        .album-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.82em;
+            padding: 6px 12px;
+            background-color: #f1f5f9;
+            color: #0f172a;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: background-color 0.2s ease;
+        }
+        .album-link:hover {
+            background-color: #e2e8f0;
+        }
+        .cert-tags {
+            border-top: 1px solid #f1f5f9;
+            padding-top: 10px;
+            display: flex;
+            gap: 6px;
+            flex-wrap: wrap;
+        }
+        .cert-tag {
+            padding: 3px 8px;
+            border-radius: 12px;
+            font-size: 0.75em;
+            font-weight: 600;
+        }
+        /* ألوان التاغات */
+        .tag-excellence { background: #e0f2fe; color: #0369a1; }
+        .tag-akademique { background: #dcfce7; color: #15803d; }
+        .tag-culture { background: #f3e8ff; color: #6b21a8; }
+        .tag-engagement { background: #e0e7ff; color: #3730a3; }
+        .tag-leadership { background: #ffedd5; color: #c2410c; }
+        .tag-environnement { background: #d1fae5; color: #047857; }
+        
+        /* ضبط سكرول المودال */
+        .modal-body {
+            max-height: 70vh;
+            overflow-y: auto;
+        }
+    </style>
 </head>
 <body>
 
@@ -68,7 +151,7 @@
                 <i class="fas fa-arrow-right arrow"></i>
             </button>
 
-            <!-- الخانة الجديدة: Mes Expériences -->
+            <!-- Mes Expériences -->
             <button class="menu-btn btn-purple" onclick="openModal('exp-modal')">
                 <i class="fas fa-briefcase"></i>
                 <span id="btn-exp">Mes Expériences</span>
@@ -125,7 +208,7 @@
         </div>
     </div>
 
-    <!-- 5. Mes Expériences (الجديد) -->
+    <!-- 5. Mes Expériences -->
     <div id="exp-modal" class="modal">
         <div class="modal-content border-purple">
             <span class="close-btn" onclick="closeModal('exp-modal')">&times;</span>
@@ -266,13 +349,45 @@
                         <p>Git, GitHub Actions, CI/CD Workflows</p>
                     </div>`,
                 certsBody: `
-                    <div class="skill-box">
-                        <h3><i class="fab fa-microsoft text-blue"></i> Microsoft Azure Fundamentals (AZ-900)</h3>
-                        <p><em>En cours de préparation</em> - Validation des concepts Cloud, sécurité et services Azure.</p>
+                    <!-- 1. Excellence Académique -->
+                    <div class="cert-card">
+                        <img src="excellence-2022-1.jpg" alt="Prix d'Excellence Académique" class="cert-main-img">
+                        <h3>Excellence & Distinctions Académiques</h3>
+                        <p class="sous-titre">Collection de distinctions célébrant les excellents résultats scolaires (Moyenne 16.71/20).</p>
+                        <div class="cert-album">
+                            <a href="excellence-2022-2.jpg" target="_blank" class="album-link"><i class="fas fa-image"></i> Voir Attestation (Photo 2)</a>
+                            <a href="excellence-2022-3.jpg" target="_blank" class="album-link"><i class="fas fa-image"></i> Voir Prix (Photo 3)</a>
+                        </div>
+                        <div class="cert-tags">
+                            <span class="cert-tag tag-excellence">#Excellence</span>
+                            <span class="cert-tag tag-akademique">#Académique</span>
+                        </div>
                     </div>
-                    <div class="skill-box">
-                        <h3><i class="fas fa-graduation-cap text-yellow"></i> Diplôme TS en Infrastructure Digitale</h3>
-                        <p>OFPPT - Spécialité Cloud Computing <em>(En cours d'obtention)</em></p>
+
+                    <!-- 2. Activités Culturelles -->
+                    <div class="cert-card">
+                        <img src="culture-2022-1.jpg" alt="Certificat Concours Culturel & Coran" class="cert-main-img">
+                        <h3>Activités Culturelles & Animation</h3>
+                        <p class="sous-titre">Participation distinguée aux concours culturels (Récitation du Coran) et animation des événements scolaires.</p>
+                        <div class="cert-album">
+                            <a href="culture-2022-2.jpg" target="_blank" class="album-link"><i class="fas fa-image"></i> Voir Attestation Culturelle (Photo 2)</a>
+                        </div>
+                        <div class="cert-tags">
+                            <span class="cert-tag tag-culture">#Culture</span>
+                            <span class="cert-tag tag-engagement">#Engagement</span>
+                        </div>
+                    </div>
+
+                    <!-- 3. Leadership et Développement Durable -->
+                    <div class="cert-card">
+                        <img src="eco-club-2022.jpg" alt="Attestation Coordinateur Club Développement Durable" class="cert-main-img">
+                        <h3>Leadership & Coordination — Développement Durable 🌱</h3>
+                        <p class="sous-titre">Attestation officielle de remerciement et de félicitations pour le rôle de <strong>Coordinateur du Club de Développement Durable</strong> et pour la participation active aux activités éducatives.</p>
+                        <div class="cert-tags">
+                            <span class="cert-tag tag-leadership">#Leadership</span>
+                            <span class="cert-tag tag-engagement">#Coordination</span>
+                            <span class="cert-tag tag-environnement">#DéveloppementDurable</span>
+                        </div>
                     </div>`,
                 expBody: `
                     <div class="skill-box">
@@ -325,13 +440,45 @@
                         <p>Git, GitHub Actions, CI/CD Workflows</p>
                     </div>`,
                 certsBody: `
-                    <div class="skill-box">
-                        <h3><i class="fab fa-microsoft text-blue"></i> Microsoft Azure Fundamentals (AZ-900)</h3>
-                        <p><em>In preparation</em> - Validation of Cloud concepts, security, and Azure services.</p>
+                    <!-- 1. Academic Excellence -->
+                    <div class="cert-card">
+                        <img src="excellence-2022-1.jpg" alt="Academic Excellence Award" class="cert-main-img">
+                        <h3>Academic Excellence & Distinctions</h3>
+                        <p class="sous-titre">Collection of awards celebrating outstanding academic achievements (GPA 16.71/20).</p>
+                        <div class="cert-album">
+                            <a href="excellence-2022-2.jpg" target="_blank" class="album-link"><i class="fas fa-image"></i> View Certificate (Photo 2)</a>
+                            <a href="excellence-2022-3.jpg" target="_blank" class="album-link"><i class="fas fa-image"></i> View Award (Photo 3)</a>
+                        </div>
+                        <div class="cert-tags">
+                            <span class="cert-tag tag-excellence">#Excellence</span>
+                            <span class="cert-tag tag-akademique">#Academic</span>
+                        </div>
                     </div>
-                    <div class="skill-box">
-                        <h3><i class="fas fa-graduation-cap text-yellow"></i> Specialized Technician Diploma in Digital Infrastructure</h3>
-                        <p>OFPPT - Cloud Computing Specialty <em>(In progress)</em></p>
+
+                    <!-- 2. Cultural Activities -->
+                    <div class="cert-card">
+                        <img src="culture-2022-1.jpg" alt="Cultural Competition Certificate" class="cert-main-img">
+                        <h3>Cultural Activities & Event Host</h3>
+                        <p class="sous-titre">Distinguished participation in cultural competitions (Quran recitation) and hosting school events.</p>
+                        <div class="cert-album">
+                            <a href="culture-2022-2.jpg" target="_blank" class="album-link"><i class="fas fa-image"></i> View Cultural Certificate (Photo 2)</a>
+                        </div>
+                        <div class="cert-tags">
+                            <span class="cert-tag tag-culture">#Culture</span>
+                            <span class="cert-tag tag-engagement">#Engagement</span>
+                        </div>
+                    </div>
+
+                    <!-- 3. Leadership & Sustainable Development -->
+                    <div class="cert-card">
+                        <img src="eco-club-2022.jpg" alt="Sustainable Development Club Coordinator Certificate" class="cert-main-img">
+                        <h3>Leadership & Coordination — Sustainable Development 🌱</h3>
+                        <p class="sous-titre">Official certificate of appreciation for serving as the <strong>Coordinator of the Sustainable Development Club</strong> and actively participating in educational activities.</p>
+                        <div class="cert-tags">
+                            <span class="cert-tag tag-leadership">#Leadership</span>
+                            <span class="cert-tag tag-engagement">#Coordination</span>
+                            <span class="cert-tag tag-environnement">#SustainableDev</span>
+                        </div>
                     </div>`,
                 expBody: `
                     <div class="skill-box">
@@ -384,13 +531,45 @@
                         <p>Git, GitHub Actions, مسارات العمل CI/CD</p>
                     </div>`,
                 certsBody: `
-                    <div class="skill-box">
-                        <h3><i class="fab fa-microsoft text-blue"></i> Microsoft Azure Fundamentals (AZ-900)</h3>
-                        <p><em>قيد التحضير</em> - إثبات المفاهيم السحابية، الأمان، وخدمات Azure.</p>
+                    <!-- 1. التفوق الدراسي -->
+                    <div class="cert-card">
+                        <img src="excellence-2022-1.jpg" alt="جائزة التفوق الدراسي" class="cert-main-img">
+                        <h3>التفوق والتميز الدراسي</h3>
+                        <p class="sous-titre">مجموعة من الجوائز والشهادات التقديرية للتفوق الدراسي والحصول على نتائج متميزة (معدل 16.71/20).</p>
+                        <div class="cert-album">
+                            <a href="excellence-2022-2.jpg" target="_blank" class="album-link"><i class="fas fa-image"></i> عرض الشهادة (صورة 2)</a>
+                            <a href="excellence-2022-3.jpg" target="_blank" class="album-link"><i class="fas fa-image"></i> عرض التذكار (صورة 3)</a>
+                        </div>
+                        <div class="cert-tags">
+                            <span class="cert-tag tag-excellence">#التفوق</span>
+                            <span class="cert-tag tag-akademique">#تميز_دراسي</span>
+                        </div>
                     </div>
-                    <div class="skill-box">
-                        <h3><i class="fas fa-graduation-cap text-yellow"></i> دبلوم تقني متخصص في البنية التحتية الرقمية</h3>
-                        <p>مؤسسة OFPPT - تخصص الحوسبة السحابية <em>(في طور الإنجاز)</em></p>
+
+                    <!-- 2. الأنشطة الثقافية -->
+                    <div class="cert-card">
+                        <img src="culture-2022-1.jpg" alt="شهادة المسابقة الثقافية والقرآن" class="cert-main-img">
+                        <h3>الأنشطة الثقافية والتنشيط</h3>
+                        <p class="sous-titre">مشاركة متميزة في المسابقات الثقافية (تجويد القرآن الكريم) وتنشيط الفعاليات المدرسية.</p>
+                        <div class="cert-album">
+                            <a href="culture-2022-2.jpg" target="_blank" class="album-link"><i class="fas fa-image"></i> عرض الشهادة الثقافية (صورة 2)</a>
+                        </div>
+                        <div class="cert-tags">
+                            <span class="cert-tag tag-culture">#أنشطة_ثقافية</span>
+                            <span class="cert-tag tag-engagement">#مشاركة_فعالة</span>
+                        </div>
+                    </div>
+
+                    <!-- 3. القيادة والتنمية المستدامة -->
+                    <div class="cert-card">
+                        <img src="eco-club-2022.jpg" alt="شهادة منسق نادي التنمية المستدامة" class="cert-main-img">
+                        <h3>القيادة والتنسيق — نادي التنمية المستدامة 🌱</h3>
+                        <p class="sous-titre">شهادة تقدير وتنويه رسمية بصفتي <strong>منسق نادي التنمية المستدامة</strong> والمشاركة الفعالة فالمسابقات والأنشطة التربوية.</p>
+                        <div class="cert-tags">
+                            <span class="cert-tag tag-leadership">#قيادة</span>
+                            <span class="cert-tag tag-engagement">#تنسيق</span>
+                            <span class="cert-tag tag-environnement">#تنمية_مستدامة</span>
+                        </div>
                     </div>`,
                 expBody: `
                     <div class="skill-box">
