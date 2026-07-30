@@ -1,6 +1,10 @@
 {
   "routes": [
     {
+      "route": "/profile.jpg",
+      "allowedRoles": ["anonymous"]
+    },
+    {
       "route": "/*",
       "allowedRoles": ["authenticated"]
     }
