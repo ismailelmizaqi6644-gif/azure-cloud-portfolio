@@ -28,9 +28,9 @@
 
         <!-- Header Profile -->
         <header class="profile-card">
-            <!-- ضفنا onclick باش تفتح الصورة كبيرة -->
             <div class="avatar" onclick="openImageModal()">
-                <img src="profile.jpg" alt="Ismail El Mizaqi" class="profile-img">
+                <!-- تم إضافة الأبعاد وخواص السرعة القصوى للصورة -->
+                <img src="profile.jpg" alt="Ismail El Mizaqi" class="profile-img" width="110" height="110" loading="eager" fetchpriority="high">
             </div>
             <h1>Ismail El Mizaqi</h1>
             <p class="subtitle" id="txt-subtitle">Technicien Spécialisé en Infrastructure Digitale</p>
@@ -95,8 +95,6 @@
     </div>
 
     <!-- ===== MODALS ===== -->
-
-    <!-- 1. À propos de moi -->
     <div id="about-modal" class="modal">
         <div class="modal-content border-blue">
             <span class="close-btn" onclick="closeModal('about-modal')">&times;</span>
@@ -105,7 +103,6 @@
         </div>
     </div>
 
-    <!-- 2. Mes Projets -->
     <div id="projects-modal" class="modal">
         <div class="modal-content border-purple">
             <span class="close-btn" onclick="closeModal('projects-modal')">&times;</span>
@@ -114,7 +111,6 @@
         </div>
     </div>
 
-    <!-- 3. Compétences Techniques -->
     <div id="skills-modal" class="modal">
         <div class="modal-content border-yellow">
             <span class="close-btn" onclick="closeModal('skills-modal')">&times;</span>
@@ -123,7 +119,6 @@
         </div>
     </div>
 
-    <!-- 4. Certifications & Attestations -->
     <div id="certs-modal" class="modal">
         <div class="modal-content border-red">
             <span class="close-btn" onclick="closeModal('certs-modal')">&times;</span>
@@ -132,7 +127,6 @@
         </div>
     </div>
 
-    <!-- 5. Mes Expériences -->
     <div id="exp-modal" class="modal">
         <div class="modal-content border-purple">
             <span class="close-btn" onclick="closeModal('exp-modal')">&times;</span>
@@ -141,7 +135,6 @@
         </div>
     </div>
 
-    <!-- 6. Formulaire de Contact -->
     <div id="contact-modal" class="modal">
         <div class="modal-content border-green">
             <span class="close-btn" onclick="closeModal('contact-modal')">&times;</span>
@@ -168,7 +161,6 @@
     </div>
 
     <script>
-        /* دالة فتح واغلاق صورة البروفايل الكبيرة */
         function openImageModal() {
             document.getElementById('image-modal').style.display = 'flex';
         }
@@ -258,7 +250,7 @@
                 lblEmail: "Adresse Email :",
                 lblMessage: "Message :",
                 btnSend: "Envoyer le message",
-                aboutBody: "<p>Bonjour, c'est un plaisir de me présenter. Je m'appelle <strong>Ismail El Mizaqi</strong>, étudiant en <strong>Infrastructure Digitale (Option Cloud Computing)</strong> à l'NTIC Safi (OFPPT).</p><p style='margin-top: 10px;'>Je me spécialise dans la conception et la sécurisation des réseaux informatiques ainsi que la gestion des environnements Cloud (sur des plateformes telles que <strong>Microsoft Azure</strong> et <strong>AWS</strong>), en plus de l'administration <strong>Linux & Windows Server</strong> et l'automatisation des infrastructures. J'ambitionne constamment de développer mes compétences et de les appliquer sur des projets concrets.</p>",
+                aboutBody: "<p>Bonjour, c'est un plaisir de me présenter. Je m'appelle <strong>Ismail El Mizaqi</strong>, étudiant en <strong>Infrastructure Digitale (Option Cloud Computing)</strong> à l'NTIC Safi (OFPPT).</p><p style='margin-top: 10px;'>Je me spécialise dans la conception et la sécurisation des réseaux informatiques ainsi que la gestion des environnements Cloud (sur des plateformes telles que <strong>Microsoft Azure</strong> et <strong>AWS</strong>), en plus de l'administration <strong>Linux & Windows Server</strong> et l'automatisation des infrastructures.</p>",
                 projectsBody: `
                     <div class="skill-box">
                         <h3><i class="fas fa-cloud text-blue"></i> Azure Static Web App & CI/CD</h3>
@@ -266,7 +258,7 @@
                     </div>
                     <div class="skill-box">
                         <h3><i class="fas fa-server text-yellow"></i> Administration Linux & Services Réseau</h3>
-                        <p>Configuration de serveurs Ubuntu (SSH, Telnet, Table de routage) et gestion du réseau local pour un environnement sécurisé.</p>
+                        <p>Configuration de serveurs Ubuntu (SSH, Telnet, Table de routage) et gestion du réseau local.</p>
                     </div>`,
                 skillsBody: `
                     <div class="skill-box">
@@ -276,25 +268,16 @@
                     <div class="skill-box">
                         <h3>Systèmes & Réseaux</h3>
                         <p>Linux (Ubuntu/Debian), Windows Server, Adressage IP, Routing, SSH & Telnet</p>
-                    </div>
-                    <div class="skill-box">
-                        <h3>DevOps & Outils</h3>
-                        <p>Git, GitHub Actions, CI/CD Workflows</p>
                     </div>`,
                 certsBody: `
                     <div class="skill-box">
                         <h3><i class="fab fa-microsoft text-blue"></i> Microsoft Azure Fundamentals (AZ-900)</h3>
                         <p><em>En cours de préparation</em> - Validation des concepts Cloud, sécurité et services Azure.</p>
-                    </div>
-                    <div class="skill-box">
-                        <h3><i class="fas fa-graduation-cap text-yellow"></i> Diplôme TS en Infrastructure Digitale</h3>
-                        <p>OFPPT - Spécialité Cloud Computing <em>(En cours d'obtention)</em></p>
                     </div>`,
                 expBody: `
                     <div class="skill-box">
                         <h3><i class="fas fa-rocket text-blue"></i> À la recherche de ma première opportunité</h3>
                         <p>Actuellement en fin de formation, je suis activement à la recherche de ma <strong>première opportunité professionnelle (Stage ou Premier Emploi)</strong>.</p>
-                        <p style="margin-top: 10px;">Passionné, rigoureux et prêt à relever les défis techniques, <strong>votre entreprise pourrait être le point de départ de mon parcours !</strong> Je suis déterminé à mettre mes compétences en Cloud (Azure/AWS), réseaux et systèmes au service de vos projets.</p>
                     </div>`
             },
             en: {
@@ -317,44 +300,11 @@
                 lblEmail: "Email Address:",
                 lblMessage: "Message:",
                 btnSend: "Send Message",
-                aboutBody: "<p>Hello, I am pleased to introduce myself. My name is <strong>Ismail El Mizaqi</strong>, studying <strong>Digital Infrastructure (Cloud Computing Option)</strong> at NTIC Safi (OFPPT).</p><p style='margin-top: 10px;'>I specialize in designing and securing computer networks and managing Cloud environments (on platforms such as <strong>Microsoft Azure</strong> and <strong>AWS</strong>), alongside <strong>Linux & Windows Server</strong> administration and infrastructure automation. I constantly strive to develop my skills and apply them to promising practical projects.</p>",
-                projectsBody: `
-                    <div class="skill-box">
-                        <h3><i class="fas fa-cloud text-blue"></i> Azure Static Web App & CI/CD</h3>
-                        <p>Deployment of a secure interactive portfolio hosted on Microsoft Azure with automation via GitHub Actions.</p>
-                    </div>
-                    <div class="skill-box">
-                        <h3><i class="fas fa-server text-yellow"></i> Linux Administration & Network Services</h3>
-                        <p>Configuration of Ubuntu servers (SSH, Telnet, Routing Tables) and local network management for a secure environment.</p>
-                    </div>`,
-                skillsBody: `
-                    <div class="skill-box">
-                        <h3>Cloud & Virtualization</h3>
-                        <p>Microsoft Azure, Virtual Machines, Azure Static Web Apps</p>
-                    </div>
-                    <div class="skill-box">
-                        <h3>Systems & Networks</h3>
-                        <p>Linux (Ubuntu/Debian), Windows Server, IP Addressing, Routing, SSH & Telnet</p>
-                    </div>
-                    <div class="skill-box">
-                        <h3>DevOps & Tools</h3>
-                        <p>Git, GitHub Actions, CI/CD Workflows</p>
-                    </div>`,
-                certsBody: `
-                    <div class="skill-box">
-                        <h3><i class="fab fa-microsoft text-blue"></i> Microsoft Azure Fundamentals (AZ-900)</h3>
-                        <p><em>In preparation</em> - Validation of Cloud concepts, security, and Azure services.</p>
-                    </div>
-                    <div class="skill-box">
-                        <h3><i class="fas fa-graduation-cap text-yellow"></i> Specialized Technician Diploma in Digital Infrastructure</h3>
-                        <p>OFPPT - Cloud Computing Specialty <em>(In progress)</em></p>
-                    </div>`,
-                expBody: `
-                    <div class="skill-box">
-                        <h3><i class="fas fa-rocket text-blue"></i> Seeking My First Opportunity</h3>
-                        <p>Currently completing my training, I am actively seeking my <strong>first professional opportunity (Internship or Entry-level position)</strong>.</p>
-                        <p style="margin-top: 10px;">Passionate, rigorous, and ready to take on technical challenges, <strong>your company could be the starting point of my career!</strong> I am eager to apply my skills in Cloud (Azure/AWS), networking, and systems to support your projects.</p>
-                    </div>`
+                aboutBody: "<p>Hello, I am pleased to introduce myself. My name is <strong>Ismail El Mizaqi</strong>, studying <strong>Digital Infrastructure (Cloud Computing Option)</strong> at NTIC Safi (OFPPT).</p>",
+                projectsBody: `<div class="skill-box"><h3><i class="fas fa-cloud text-blue"></i> Azure Static Web App & CI/CD</h3><p>Deployment of a secure interactive portfolio hosted on Microsoft Azure.</p></div>`,
+                skillsBody: `<div class="skill-box"><h3>Cloud & Virtualization</h3><p>Microsoft Azure, Virtual Machines, Azure Static Web Apps</p></div>`,
+                certsBody: `<div class="skill-box"><h3><i class="fab fa-microsoft text-blue"></i> Microsoft Azure Fundamentals (AZ-900)</h3><p><em>In preparation</em></p></div>`,
+                expBody: `<div class="skill-box"><h3><i class="fas fa-rocket text-blue"></i> Seeking My First Opportunity</h3><p>Actively seeking my first professional opportunity.</p></div>`
             },
             ar: {
                 subtitle: "تقني متخصص في البنية التحتية الرقمية",
@@ -376,44 +326,11 @@
                 lblEmail: "البريد الإلكتروني:",
                 lblMessage: "الرسالة:",
                 btnSend: "إرسال الرسالة",
-                aboutBody: "<p>مرحباً، يشرفني أن أعرّفكم بنفسي. اسمي <strong>إسماعيل الميزاقي</strong>، طالب بشعبة <strong>البنية التحتية الرقمية (خيار الحوسبة السحابية)</strong> بالمعهد المتخصص في تقنيات الإعلام والتواصل بآسفي (<strong>NTIC Safi - OFPPT</strong>).</p><p style='margin-top: 10px;'>أتخصص في تصميم وتأمين شبكات المعلومات وإدارة الأنظمة السحابية (على منصات مثل <strong>Microsoft Azure</strong> و <strong>AWS</strong>)، بالإضافة إلى إدارة سيرفرات <strong>Linux & Windows Server</strong> وأتمتة البنيات التحتية لتوفير حلول رقمية متكاملة وعالية الأداء. وأطمح باستمرار لتطوير مهاراتي وتطبيقها في مشاريع عملية واعدة.</p>",
-                projectsBody: `
-                    <div class="skill-box">
-                        <h3><i class="fas fa-cloud text-blue"></i> Azure Static Web App & CI/CD</h3>
-                        <p>نشر موقع شخصي تفاعلي وآمن مستضاف على Microsoft Azure مع الأتمتة باستخدام GitHub Actions.</p>
-                    </div>
-                    <div class="skill-box">
-                        <h3><i class="fas fa-server text-yellow"></i> إدارة أنظمة Linux وخدمات الشبكة</h3>
-                        <p>إعداد خوادم Ubuntu (SSH, Telnet, جدول التوجيه Routing Table) وإدارة الشبكة المحلية لبيئة آمنة.</p>
-                    </div>`,
-                skillsBody: `
-                    <div class="skill-box">
-                        <h3>الحوسبة السحابية والافتراضية (Cloud & Virtualization)</h3>
-                        <p>Microsoft Azure, Virtual Machines, Azure Static Web Apps</p>
-                    </div>
-                    <div class="skill-box">
-                        <h3>الأنظمة والشبكات</h3>
-                        <p>Linux (Ubuntu/Debian), Windows Server, العنونة IP, Routing, SSH & Telnet</p>
-                    </div>
-                    <div class="skill-box">
-                        <h3>DevOps والأدوات</h3>
-                        <p>Git, GitHub Actions, مسارات العمل CI/CD</p>
-                    </div>`,
-                certsBody: `
-                    <div class="skill-box">
-                        <h3><i class="fab fa-microsoft text-blue"></i> Microsoft Azure Fundamentals (AZ-900)</h3>
-                        <p><em>قيد التحضير</em> - إثبات المفاهيم السحابية، الأمان، وخدمات Azure.</p>
-                    </div>
-                    <div class="skill-box">
-                        <h3><i class="fas fa-graduation-cap text-yellow"></i> دبلوم تقني متخصص في البنية التحتية الرقمية</h3>
-                        <p>مؤسسة OFPPT - تخصص الحوسبة السحابية <em>(في طور الإنجاز)</em></p>
-                    </div>`,
-                expBody: `
-                    <div class="skill-box">
-                        <h3><i class="fas fa-rocket text-blue"></i> البحث عن أول فرصة مهنية</h3>
-                        <p>حالياً في مرحلة نهاية التكوين، وأبحث بجدية عن <strong>أول فرصة مهنية (تدريب Stage أو أول عمل)</strong>.</p>
-                        <p style="margin-top: 10px;">بفضل شغفي والانضباط والجاهزية لتحديات العمل التقني، <strong>قد تكون مؤسستكم أو شركتكم هي المحطة الأولى والبداية الموفقة لمساري المهني!</strong> أنا على أتم الاستعداد لتطبيق مهاراتي في الحوسبة السحابية (Azure/AWS)، الشبكات والأنظمة لخدمة مشاريعكم.</p>
-                    </div>`
+                aboutBody: "<p>مرحباً، يشرفني أن أعرّفكم بنفسي. اسمي <strong>إسماعيل الميزاقي</strong>، طالب بشعبة <strong>البنية التحتية الرقمية (خيار الحوسبة السحابية)</strong> بالمعهد المتخصص في تقنيات الإعلام والتواصل بآسفي (<strong>NTIC Safi - OFPPT</strong>).</p>",
+                projectsBody: `<div class="skill-box"><h3><i class="fas fa-cloud text-blue"></i> Azure Static Web App & CI/CD</h3><p>نشر موقع شخصي تفاعلي وآمن مستضاف على Microsoft Azure.</p></div>`,
+                skillsBody: `<div class="skill-box"><h3>الحوسبة السحابية (Cloud & Virtualization)</h3><p>Microsoft Azure, Virtual Machines, Azure Static Web Apps</p></div>`,
+                certsBody: `<div class="skill-box"><h3><i class="fab fa-microsoft text-blue"></i> Microsoft Azure Fundamentals (AZ-900)</h3><p><em>قيد التحضير</em></p></div>`,
+                expBody: `<div class="skill-box"><h3><i class="fas fa-rocket text-blue"></i> البحث عن أول فرصة مهنية</h3><p>أبحث بجدية عن أول فرصة مهنية (تدريب أو عمل).</p></div>`
             }
         };
 
@@ -433,7 +350,6 @@
 
             const t = translations[lang];
             
-            // Header & Buttons
             document.getElementById('txt-subtitle').innerText = t.subtitle;
             document.getElementById('txt-badge').innerText = t.badge;
             document.getElementById('btn-cv').innerHTML = `<i class="fas fa-file-arrow-down"></i> ${t.cvBtn}`;
@@ -444,7 +360,6 @@
             document.getElementById('btn-contact').innerText = t.contactBtn;
             if(document.getElementById('btn-exp')) document.getElementById('btn-exp').innerText = t.expBtn;
             
-            // Modal Titles
             document.getElementById('modal-about-title').innerText = t.aboutTitle;
             document.getElementById('modal-projects-title').innerText = t.projectsTitle;
             document.getElementById('modal-skills-title').innerText = t.skillsTitle;
@@ -452,13 +367,11 @@
             document.getElementById('modal-contact-title').innerText = t.contactTitle;
             if(document.getElementById('modal-exp-title')) document.getElementById('modal-exp-title').innerText = t.expTitle;
 
-            // Form Labels
             document.getElementById('lbl-name').innerText = t.lblName;
             document.getElementById('lbl-email').innerText = t.lblEmail;
             document.getElementById('lbl-message').innerText = t.lblMessage;
             document.getElementById('btn-send').innerText = t.btnSend;
 
-            // Dynamic Modal Bodies
             document.getElementById('modal-about-body').innerHTML = t.aboutBody;
             document.getElementById('modal-projects-body').innerHTML = t.projectsBody;
             document.getElementById('modal-skills-body').innerHTML = t.skillsBody;
@@ -466,7 +379,6 @@
             if(document.getElementById('modal-exp-body')) document.getElementById('modal-exp-body').innerHTML = t.expBody;
         }
 
-        // Initialize default language
         changeLanguage('fr');
     </script>
 </body>
