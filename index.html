@@ -4,6 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ismail El Mizaqi | Cloud Portfolio</title>
+
+    <!-- Open Graph / Facebook / WhatsApp / LinkedIn -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://black-plant-02eef8103.7.azurestaticapps.net/">
+    <meta property="og:title" content="Ismail El Mizaqi | Cloud Computing & Infrastructure Portfolio">
+    <meta property="og:description" content="Portfolio de Ismail El Mizaqi - Technicien Spécialisé en Infrastructure Digitale (Option Cloud Computing). Découvrez mes projets et compétences Azure/Linux.">
+    <meta property="og:image" content="https://black-plant-02eef8103.7.azurestaticapps.net/profile.jpg">
+
+    <!-- Twitter / X -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://black-plant-02eef8103.7.azurestaticapps.net/">
+    <meta property="twitter:title" content="Ismail El Mizaqi | Cloud Computing Portfolio">
+    <meta property="twitter:description" content="Technicien Spécialisé en Infrastructure Digitale (Option Cloud Computing) - Portfolio Professionnel.">
+    <meta property="twitter:image" content="https://black-plant-02eef8103.7.azurestaticapps.net/profile.jpg">
+
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
@@ -28,7 +43,8 @@
 
         <!-- Header Profile -->
         <header class="profile-card">
-            <div class="avatar">
+            <!-- إضافة خاصية الضغط لتكبير الصورة -->
+            <div class="avatar" onclick="openImageModal()">
                 <img src="profile.jpg" alt="Ismail El Mizaqi" class="profile-img">
             </div>
             <h1>Ismail El Mizaqi</h1>
@@ -68,7 +84,7 @@
                 <i class="fas fa-arrow-right arrow"></i>
             </button>
 
-            <!-- الخانة الجديدة: Mes Expériences -->
+            <!-- Mes Expériences -->
             <button class="menu-btn btn-purple" onclick="openModal('exp-modal')">
                 <i class="fas fa-briefcase"></i>
                 <span id="btn-exp">Mes Expériences</span>
@@ -85,6 +101,12 @@
         <footer>
             <p>© 2026 Ismail El Mizaqi | Propulsé par Microsoft Azure</p>
         </footer>
+    </div>
+
+    <!-- ===== POPUP IMAGE MODAL (جديد) ===== -->
+    <div id="image-modal" class="modal" onclick="closeImageModal()">
+        <span class="close-btn">&times;</span>
+        <img src="profile.jpg" alt="Ismail El Mizaqi" class="modal-preview-img">
     </div>
 
     <!-- ===== MODALS ===== -->
@@ -125,7 +147,7 @@
         </div>
     </div>
 
-    <!-- 5. Mes Expériences (الجديد) -->
+    <!-- 5. Mes Expériences -->
     <div id="exp-modal" class="modal">
         <div class="modal-content border-purple">
             <span class="close-btn" onclick="closeModal('exp-modal')">&times;</span>
@@ -161,6 +183,15 @@
     </div>
 
     <script>
+        /* ===== الدوال الخاصة بتكبير وتأطير الصورة ===== */
+        function openImageModal() {
+            document.getElementById('image-modal').style.display = 'flex';
+        }
+
+        function closeImageModal() {
+            document.getElementById('image-modal').style.display = 'none';
+        }
+
         function openModal(id) { 
             document.getElementById(id).style.display = "flex"; 
         }
@@ -351,7 +382,7 @@
                 expBtn: "خبراتي المهنية",
                 contactBtn: "تواصل معي (استمارة)",
                 contactTitle: "تواصل معي",
-                aboutTitle: "نبذة عني",
+                aboutTitle: "أنا إسماعيل الميزاقي",
                 projectsTitle: "مشاريعي",
                 skillsTitle: "المهارات التقنية",
                 certsTitle: "الشهادات والشواهد",
@@ -401,57 +432,8 @@
             }
         };
 
-        function changeLanguage(lang, evt) {
-            if (evt) {
-                document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
-                evt.target.classList.add('active');
-            }
-
-            if(lang === 'ar') {
-                document.documentElement.dir = "rtl";
-                document.documentElement.lang = "ar";
-            } else {
-                document.documentElement.dir = "ltr";
-                document.documentElement.lang = lang;
-            }
-
-            const t = translations[lang];
-            
-            // Header & Buttons
-            document.getElementById('txt-subtitle').innerText = t.subtitle;
-            document.getElementById('txt-badge').innerText = t.badge;
-            document.getElementById('btn-cv').innerHTML = `<i class="fas fa-file-arrow-down"></i> ${t.cvBtn}`;
-            document.getElementById('btn-about').innerText = t.aboutBtn;
-            document.getElementById('btn-projects').innerText = t.projectsBtn;
-            document.getElementById('btn-skills').innerText = t.skillsBtn;
-            document.getElementById('btn-certs').innerText = t.certsBtn;
-            document.getElementById('btn-contact').innerText = t.contactBtn;
-            if(document.getElementById('btn-exp')) document.getElementById('btn-exp').innerText = t.expBtn;
-            
-            // Modal Titles
-            document.getElementById('modal-about-title').innerText = t.aboutTitle;
-            document.getElementById('modal-projects-title').innerText = t.projectsTitle;
-            document.getElementById('modal-skills-title').innerText = t.skillsTitle;
-            document.getElementById('modal-certs-title').innerText = t.certsTitle;
-            document.getElementById('modal-contact-title').innerText = t.contactTitle;
-            if(document.getElementById('modal-exp-title')) document.getElementById('modal-exp-title').innerText = t.expTitle;
-
-            // Form Labels
-            document.getElementById('lbl-name').innerText = t.lblName;
-            document.getElementById('lbl-email').innerText = t.lblEmail;
-            document.getElementById('lbl-message').innerText = t.lblMessage;
-            document.getElementById('btn-send').innerText = t.btnSend;
-
-            // Dynamic Modal Bodies
-            document.getElementById('modal-about-body').innerHTML = t.aboutBody;
-            document.getElementById('modal-projects-body').innerHTML = t.projectsBody;
-            document.getElementById('modal-skills-body').innerHTML = t.skillsBody;
-            document.getElementById('modal-certs-body').innerHTML = t.certsBody;
-            if(document.getElementById('modal-exp-body')) document.getElementById('modal-exp-body').innerHTML = t.expBody;
-        }
-
         // Initialize default language
         changeLanguage('fr');
     </script>
 </body>
-    </html>
+</html>
