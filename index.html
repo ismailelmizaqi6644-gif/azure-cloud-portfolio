@@ -4,6 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ismail El Mizaqi | Cloud Portfolio</title>
+
+    <!-- Open Graph / Facebook / WhatsApp / LinkedIn -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://ismailelmizaqi.azurestaticapps.net/">
+    <meta property="og:title" content="Ismail El Mizaqi | Cloud Computing & Infrastructure Portfolio">
+    <meta property="og:description" content="Portfolio de Ismail El Mizaqi - Technicien Spécialisé en Infrastructure Digitale (Option Cloud Computing). Découvrez mes projets et compétences Azure/Linux.">
+    <meta property="og:image" content="https://ismailelmizaqi.azurestaticapps.net/profile.jpg">
+
+    <!-- Twitter / X -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://ismailelmizaqi.azurestaticapps.net/">
+    <meta property="twitter:title" content="Ismail El Mizaqi | Cloud Computing Portfolio">
+    <meta property="twitter:description" content="Technicien Spécialisé en Infrastructure Digitale (Option Cloud Computing) - Portfolio Professionnel.">
+    <meta property="twitter:image" content="https://ismailelmizaqi.azurestaticapps.net/profile.jpg">
+
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
@@ -29,7 +44,6 @@
         <!-- Header Profile -->
         <header class="profile-card">
             <div class="avatar" onclick="openImageModal()">
-                <!-- تم إضافة الأبعاد وخواص السرعة القصوى للصورة -->
                 <img src="profile.jpg" alt="Ismail El Mizaqi" class="profile-img" width="110" height="110" loading="eager" fetchpriority="high">
             </div>
             <h1>Ismail El Mizaqi</h1>
@@ -88,7 +102,7 @@
         </footer>
     </div>
 
-    <!-- ===== POPUP IMAGE MODAL (تكبير صورة البروفايل) ===== -->
+    <!-- ===== POPUP IMAGE MODAL ===== -->
     <div id="image-modal" class="modal" onclick="closeImageModal()">
         <span class="close-btn">&times;</span>
         <img src="profile.jpg" alt="Ismail El Mizaqi" class="modal-preview-img">
