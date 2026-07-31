@@ -28,7 +28,6 @@
 
         <!-- Header Profile -->
         <header class="profile-card">
-            <!-- إضافة الضغط على الصورة للتكبير -->
             <div class="avatar" onclick="openImageModal()">
                 <img src="profile.jpg" alt="Ismail El Mizaqi" class="profile-img">
             </div>
@@ -63,13 +62,13 @@
                 <i class="fas fa-arrow-right arrow"></i>
             </button>
 
-            <button class="menu-btn btn-red" onclick="openModal('certs-modal')">
+            <!-- الزر الرئيسي الجديد لي غيفتح جوج أزرار فرعية -->
+            <button class="menu-btn btn-red" onclick="openModal('certs-main-modal')">
                 <i class="fas fa-award"></i>
                 <span id="btn-certs">Certifications & Attestations</span>
                 <i class="fas fa-arrow-right arrow"></i>
             </button>
 
-            <!-- الخانة الجديدة: Mes Expériences -->
             <button class="menu-btn btn-purple" onclick="openModal('exp-modal')">
                 <i class="fas fa-briefcase"></i>
                 <span id="btn-exp">Mes Expériences</span>
@@ -88,7 +87,7 @@
         </footer>
     </div>
 
-    <!-- ===== POPUP IMAGE MODAL (نافذة تكبير الصورة) ===== -->
+    <!-- ===== POPUP IMAGE MODAL ===== -->
     <div id="image-modal" class="modal" onclick="closeImageModal()">
         <span class="close-btn">&times;</span>
         <img src="profile.jpg" alt="Ismail El Mizaqi" class="modal-preview-img">
@@ -123,16 +122,54 @@
         </div>
     </div>
 
-    <!-- 4. Certifications & Attestations -->
-    <div id="certs-modal" class="modal">
+    <!-- 4. Certifications & Attestations (النافذة الرئيسية التي تحتوي على الزرين الفرعيين) -->
+    <div id="certs-main-modal" class="modal">
         <div class="modal-content border-red">
-            <span class="close-btn" onclick="closeModal('certs-modal')">&times;</span>
-            <h2 style="margin-bottom: 15px;"><i class="fas fa-award text-red"></i> <span id="modal-certs-title">Certifications & Attestations</span></h2>
-            <div class="modal-body" id="modal-certs-body"></div>
+            <span class="close-btn" onclick="closeModal('certs-main-modal')">&times;</span>
+            <h2 style="margin-bottom: 20px;"><i class="fas fa-award text-red"></i> <span id="modal-certs-title">Certifications & Attestations</span></h2>
+            
+            <!-- الأزرار الفرعية الداخلية -->
+            <div class="menu-grid" style="gap: 12px;">
+                <button class="menu-btn btn-red" onclick="closeModal('certs-main-modal'); openModal('tech-certs-modal');">
+                    <i class="fas fa-certificate"></i>
+                    <span id="btn-tech-certs">Certifications Techniques</span>
+                    <i class="fas fa-arrow-right arrow"></i>
+                </button>
+
+                <button class="menu-btn btn-red" onclick="closeModal('certs-main-modal'); openModal('attestations-modal');">
+                    <i class="fas fa-file-alt"></i>
+                    <span id="btn-attestations">Attestations & Engagements</span>
+                    <i class="fas fa-arrow-right arrow"></i>
+                </button>
+            </div>
         </div>
     </div>
 
-    <!-- 5. Mes Expériences (الجديد) -->
+    <!-- 4.1 نافذة Certifications Techniques (خاوية حالياً) -->
+    <div id="tech-certs-modal" class="modal">
+        <div class="modal-content border-red">
+            <span class="close-btn" onclick="closeModal('tech-certs-modal')">&times;</span>
+            <h2 style="margin-bottom: 15px;"><i class="fas fa-certificate text-red"></i> <span id="modal-tech-title">Certifications Techniques</span></h2>
+            <div class="modal-body" id="modal-tech-body" style="margin-top: 15px;">
+                <!-- هنا غادي نحطو المحتوى لاحقاً -->
+                <p style="text-align: center; color: #8b949e; padding: 20px;">[ Bientôt disponible / Coming soon / قريباً ]</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 4.2 نافذة Attestations & Engagements (خاوية حالياً) -->
+    <div id="attestations-modal" class="modal">
+        <div class="modal-content border-red">
+            <span class="close-btn" onclick="closeModal('attestations-modal')">&times;</span>
+            <h2 style="margin-bottom: 15px;"><i class="fas fa-file-alt text-red"></i> <span id="modal-attest-title">Attestations & Engagements</span></h2>
+            <div class="modal-body" id="modal-attest-body" style="margin-top: 15px;">
+                <!-- هنا غادي نحطو المحتوى لاحقاً -->
+                <p style="text-align: center; color: #8b949e; padding: 20px;">[ Bientôt disponible / Coming soon / قريباً ]</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 5. Mes Expériences -->
     <div id="exp-modal" class="modal">
         <div class="modal-content border-purple">
             <span class="close-btn" onclick="closeModal('exp-modal')">&times;</span>
@@ -168,7 +205,6 @@
     </div>
 
     <script>
-        /* دالتا تكبير وإغلاق الصورة */
         function openImageModal() {
             document.getElementById('image-modal').style.display = 'flex';
         }
@@ -253,6 +289,10 @@
                 projectsTitle: "Mes Projets",
                 skillsTitle: "Compétences Techniques",
                 certsTitle: "Certifications & Attestations",
+                techCertsBtn: "Certifications Techniques",
+                attestationsBtn: "Attestations & Engagements",
+                modalTechTitle: "Certifications Techniques",
+                modalAttestTitle: "Attestations & Engagements",
                 expTitle: "Mes Expériences Professionnelles",
                 lblName: "Nom complet :",
                 lblEmail: "Adresse Email :",
@@ -281,15 +321,6 @@
                         <h3>DevOps & Outils</h3>
                         <p>Git, GitHub Actions, CI/CD Workflows</p>
                     </div>`,
-                certsBody: `
-                    <div class="skill-box">
-                        <h3><i class="fab fa-microsoft text-blue"></i> Microsoft Azure Fundamentals (AZ-900)</h3>
-                        <p><em>En cours de préparation</em> - Validation des concepts Cloud, sécurité et services Azure.</p>
-                    </div>
-                    <div class="skill-box">
-                        <h3><i class="fas fa-graduation-cap text-yellow"></i> Diplôme TS en Infrastructure Digitale</h3>
-                        <p>OFPPT - Spécialité Cloud Computing <em>(En cours d'obtention)</em></p>
-                    </div>`,
                 expBody: `
                     <div class="skill-box">
                         <h3><i class="fas fa-rocket text-blue"></i> À la recherche de ma première opportunité</h3>
@@ -312,6 +343,10 @@
                 projectsTitle: "My Projects",
                 skillsTitle: "Technical Skills",
                 certsTitle: "Certifications & Credentials",
+                techCertsBtn: "Technical Certifications",
+                attestationsBtn: "Attestations & Engagements",
+                modalTechTitle: "Technical Certifications",
+                modalAttestTitle: "Attestations & Engagements",
                 expTitle: "Professional Experience",
                 lblName: "Full Name:",
                 lblEmail: "Email Address:",
@@ -340,15 +375,6 @@
                         <h3>DevOps & Tools</h3>
                         <p>Git, GitHub Actions, CI/CD Workflows</p>
                     </div>`,
-                certsBody: `
-                    <div class="skill-box">
-                        <h3><i class="fab fa-microsoft text-blue"></i> Microsoft Azure Fundamentals (AZ-900)</h3>
-                        <p><em>In preparation</em> - Validation of Cloud concepts, security, and Azure services.</p>
-                    </div>
-                    <div class="skill-box">
-                        <h3><i class="fas fa-graduation-cap text-yellow"></i> Specialized Technician Diploma in Digital Infrastructure</h3>
-                        <p>OFPPT - Cloud Computing Specialty <em>(In progress)</em></p>
-                    </div>`,
                 expBody: `
                     <div class="skill-box">
                         <h3><i class="fas fa-rocket text-blue"></i> Seeking My First Opportunity</h3>
@@ -371,6 +397,10 @@
                 projectsTitle: "مشاريعي",
                 skillsTitle: "المهارات التقنية",
                 certsTitle: "الشهادات والشواهد",
+                techCertsBtn: "الشهادات التقنية",
+                attestationsBtn: "الشواهد والالتزامات",
+                modalTechTitle: "الشهادات التقنية",
+                modalAttestTitle: "الشواهد والالتزامات",
                 expTitle: "الخبرات المهنية",
                 lblName: "الاسم الكامل:",
                 lblEmail: "البريد الإلكتروني:",
@@ -399,20 +429,11 @@
                         <h3>DevOps والأدوات</h3>
                         <p>Git, GitHub Actions, مسارات العمل CI/CD</p>
                     </div>`,
-                certsBody: `
-                    <div class="skill-box">
-                        <h3><i class="fab fa-microsoft text-blue"></i> Microsoft Azure Fundamentals (AZ-900)</h3>
-                        <p><em>قيد التحضير</em> - إثبات المفاهيم السحابية، الأمان، وخدمات Azure.</p>
-                    </div>
-                    <div class="skill-box">
-                        <h3><i class="fas fa-graduation-cap text-yellow"></i> دبلوم تقني متخصص في البنية التحتية الرقمية</h3>
-                        <p>مؤسسة OFPPT - تخصص الحوسبة السحابية <em>(في طور الإنجاز)</em></p>
-                    </div>`,
                 expBody: `
                     <div class="skill-box">
                         <h3><i class="fas fa-rocket text-blue"></i> البحث عن أول فرصة مهنية</h3>
                         <p>حالياً في مرحلة نهاية التكوين، وأبحث بجدية عن <strong>أول فرصة مهنية (تدريب Stage أو أول عمل)</strong>.</p>
-                        <p style="margin-top: 10px;">بفضل شغفي والانضباط والجاهزية لتحديات العمل التقني، <strong>قد تكون مؤسستكم أو شركتكم هي المحطة الأولى والبداية الموفقة لمساري المهني!</strong> أنا على أتم الاستعداد لتطبيق مهاراتي في الحوسبة السحابية (Azure/AWS)، الشبكات والأنظمة لخدمة مشاريعكم.</p>
+                        <p style="margin-top: 10px;">بفضل شغفي والانضباط والجاهزية لتحديات العمل التقني، <strong>قد تكون مؤسستكم أو شركتكم هي المحطة الأولى والبداية الموفقة لمساري المهني!</strong> أنا على أتم الاستعداد لتطبيق مهاراتي في الحوسبة السحابية (Azure/AWS)، الشبكات والأنظمة لخدمة مشاريكم.</p>
                     </div>`
             }
         };
@@ -433,7 +454,6 @@
 
             const t = translations[lang];
             
-            // Header & Buttons
             document.getElementById('txt-subtitle').innerText = t.subtitle;
             document.getElementById('txt-badge').innerText = t.badge;
             document.getElementById('btn-cv').innerHTML = `<i class="fas fa-file-arrow-down"></i> ${t.cvBtn}`;
@@ -441,32 +461,31 @@
             document.getElementById('btn-projects').innerText = t.projectsBtn;
             document.getElementById('btn-skills').innerText = t.skillsBtn;
             document.getElementById('btn-certs').innerText = t.certsBtn;
+            if(document.getElementById('btn-tech-certs')) document.getElementById('btn-tech-certs').innerText = t.techCertsBtn;
+            if(document.getElementById('btn-attestations')) document.getElementById('btn-attestations').innerText = t.attestationsBtn;
             document.getElementById('btn-contact').innerText = t.contactBtn;
             if(document.getElementById('btn-exp')) document.getElementById('btn-exp').innerText = t.expBtn;
             
-            // Modal Titles
             document.getElementById('modal-about-title').innerText = t.aboutTitle;
             document.getElementById('modal-projects-title').innerText = t.projectsTitle;
             document.getElementById('modal-skills-title').innerText = t.skillsTitle;
             document.getElementById('modal-certs-title').innerText = t.certsTitle;
+            if(document.getElementById('modal-tech-title')) document.getElementById('modal-tech-title').innerText = t.modalTechTitle;
+            if(document.getElementById('modal-attest-title')) document.getElementById('modal-attest-title').innerText = t.modalAttestTitle;
             document.getElementById('modal-contact-title').innerText = t.contactTitle;
             if(document.getElementById('modal-exp-title')) document.getElementById('modal-exp-title').innerText = t.expTitle;
 
-            // Form Labels
             document.getElementById('lbl-name').innerText = t.lblName;
             document.getElementById('lbl-email').innerText = t.lblEmail;
             document.getElementById('lbl-message').innerText = t.lblMessage;
             document.getElementById('btn-send').innerText = t.btnSend;
 
-            // Dynamic Modal Bodies
             document.getElementById('modal-about-body').innerHTML = t.aboutBody;
             document.getElementById('modal-projects-body').innerHTML = t.projectsBody;
             document.getElementById('modal-skills-body').innerHTML = t.skillsBody;
-            document.getElementById('modal-certs-body').innerHTML = t.certsBody;
             if(document.getElementById('modal-exp-body')) document.getElementById('modal-exp-body').innerHTML = t.expBody;
         }
 
-        // Initialize default language
         changeLanguage('fr');
     </script>
 </body>
