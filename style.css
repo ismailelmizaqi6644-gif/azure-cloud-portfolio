@@ -120,6 +120,7 @@ body {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
+/* تكبير بسيط فاش تدوز عليها الماوس بالحاسوب */
 .avatar:hover {
     transform: scale(1.08);
     box-shadow: 0 6px 20px rgba(0, 120, 212, 0.7);
@@ -131,10 +132,14 @@ body {
     object-fit: cover;
 }
 
-/* نافذة تكبير الصورة */
+/* نافذة تكبير الصورة (عند الضغط فـ الهاتف أو الحاسوب) */
+#image-modal {
+    cursor: pointer;
+}
+
 .modal-preview-img {
-    width: 280px;
-    height: 280px;
+    width: 270px;
+    height: 270px;
     border-radius: 50%;
     object-fit: cover;
     border: 4px solid #0078d4;
@@ -298,3 +303,18 @@ body {
 .alert-error { background: rgba(248, 81, 73, 0.2); border: 1px solid #f85149; color: #ff7b72; }
 
 footer { text-align: center; margin-top: 25px; font-size: 0.8rem; color: #8b949e; }
+
+/* ===== دعم الاتجاه للغة العربية (RTL) ===== */
+html[dir="rtl"] .skill-box,
+html[dir="rtl"] .form-group {
+    text-align: right;
+}
+
+html[dir="rtl"] .close-btn {
+    right: auto;
+    left: 20px;
+}
+
+html[dir="rtl"] .arrow {
+    transform: rotate(180deg);
+}
