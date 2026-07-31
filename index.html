@@ -93,7 +93,7 @@
         <img src="profile.jpg" alt="Ismail El Mizaqi" class="modal-preview-img">
     </div>
 
-    <!-- ===== MODALS ===== -->
+    <!-- ===== MODALS (خارج الـ container لتكبير الحجم على الشاشة كاملة) ===== -->
 
     <!-- 1. À propos de moi -->
     <div id="about-modal" class="modal">
@@ -122,13 +122,12 @@
         </div>
     </div>
 
-    <!-- 4. Certifications & Attestations (النافذة الرئيسية التي تحتوي على الزرين الفرعيين) -->
+    <!-- 4. Certifications & Attestations -->
     <div id="certs-main-modal" class="modal">
         <div class="modal-content border-red">
             <span class="close-btn" onclick="closeModal('certs-main-modal')">&times;</span>
             <h2 style="margin-bottom: 20px;"><i class="fas fa-award text-red"></i> <span id="modal-certs-title">Certifications & Attestations</span></h2>
             
-            <!-- الأزرار الفرعية الداخلية -->
             <div class="menu-grid" style="gap: 12px;">
                 <button class="menu-btn btn-red" onclick="closeModal('certs-main-modal'); openModal('tech-certs-modal');">
                     <i class="fas fa-certificate"></i>
@@ -145,25 +144,23 @@
         </div>
     </div>
 
-    <!-- 4.1 نافذة Certifications Techniques (خاوية حالياً) -->
+    <!-- 4.1 نافذة Certifications Techniques -->
     <div id="tech-certs-modal" class="modal">
         <div class="modal-content border-red">
             <span class="close-btn" onclick="closeModal('tech-certs-modal')">&times;</span>
             <h2 style="margin-bottom: 15px;"><i class="fas fa-certificate text-red"></i> <span id="modal-tech-title">Certifications Techniques</span></h2>
             <div class="modal-body" id="modal-tech-body" style="margin-top: 15px;">
-                <!-- هنا غادي نحطو المحتوى لاحقاً -->
                 <p style="text-align: center; color: #8b949e; padding: 20px;">[ Bientôt disponible / Coming soon / قريباً ]</p>
             </div>
         </div>
     </div>
 
-    <!-- 4.2 نافذة Attestations & Engagements (خاوية حالياً) -->
+    <!-- 4.2 نافذة Attestations & Engagements -->
     <div id="attestations-modal" class="modal">
         <div class="modal-content border-red">
             <span class="close-btn" onclick="closeModal('attestations-modal')">&times;</span>
             <h2 style="margin-bottom: 15px;"><i class="fas fa-file-alt text-red"></i> <span id="modal-attest-title">Attestations & Engagements</span></h2>
             <div class="modal-body" id="modal-attest-body" style="margin-top: 15px;">
-                <!-- هنا غادي نحطو المحتوى لاحقاً -->
                 <p style="text-align: center; color: #8b949e; padding: 20px;">[ Bientôt disponible / Coming soon / قريباً ]</p>
             </div>
         </div>
