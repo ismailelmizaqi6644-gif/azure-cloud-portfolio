@@ -28,7 +28,8 @@
 
         <!-- Header Profile -->
         <header class="profile-card">
-            <div class="avatar">
+            <!-- إضافة الضغط على الصورة للتكبير -->
+            <div class="avatar" onclick="openImageModal()">
                 <img src="profile.jpg" alt="Ismail El Mizaqi" class="profile-img">
             </div>
             <h1>Ismail El Mizaqi</h1>
@@ -85,6 +86,12 @@
         <footer>
             <p>© 2026 Ismail El Mizaqi | Propulsé par Microsoft Azure</p>
         </footer>
+    </div>
+
+    <!-- ===== POPUP IMAGE MODAL (نافذة تكبير الصورة) ===== -->
+    <div id="image-modal" class="modal" onclick="closeImageModal()">
+        <span class="close-btn">&times;</span>
+        <img src="profile.jpg" alt="Ismail El Mizaqi" class="modal-preview-img">
     </div>
 
     <!-- ===== MODALS ===== -->
@@ -161,6 +168,15 @@
     </div>
 
     <script>
+        /* دالتا تكبير وإغلاق الصورة */
+        function openImageModal() {
+            document.getElementById('image-modal').style.display = 'flex';
+        }
+
+        function closeImageModal() {
+            document.getElementById('image-modal').style.display = 'none';
+        }
+
         function openModal(id) { 
             document.getElementById(id).style.display = "flex"; 
         }
