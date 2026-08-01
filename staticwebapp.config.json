@@ -5,6 +5,34 @@
       "allowedRoles": ["anonymous"]
     },
     {
+      "route": "/excellence-2022-1.jpg",
+      "allowedRoles": ["anonymous"]
+    },
+    {
+      "route": "/excellence-2022-2.jpg",
+      "allowedRoles": ["anonymous"]
+    },
+    {
+      "route": "/excellence-2022-3.jpg",
+      "allowedRoles": ["anonymous"]
+    },
+    {
+      "route": "/eco-club-2022.jpg",
+      "allowedRoles": ["anonymous"]
+    },
+    {
+      "route": "/culture-2022-1.jpg",
+      "allowedRoles": ["anonymous"]
+    },
+    {
+      "route": "/culture-2022-2.jpg",
+      "allowedRoles": ["anonymous"]
+    },
+    {
+      "route": "/cv.pdf",
+      "allowedRoles": ["anonymous"]
+    },
+    {
       "route": "/*",
       "allowedRoles": ["authenticated"]
     }
