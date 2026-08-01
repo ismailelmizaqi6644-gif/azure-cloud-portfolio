@@ -29,6 +29,26 @@
       "allowedRoles": ["anonymous"]
     },
     {
+      "route": "/*.jpg",
+      "allowedRoles": ["anonymous"]
+    },
+    {
+      "route": "/*.JPG",
+      "allowedRoles": ["anonymous"]
+    },
+    {
+      "route": "/*.jpeg",
+      "allowedRoles": ["anonymous"]
+    },
+    {
+      "route": "/*.png",
+      "allowedRoles": ["anonymous"]
+    },
+    {
+      "route": "/*.PNG",
+      "allowedRoles": ["anonymous"]
+    },
+    {
       "route": "/cv.pdf",
       "allowedRoles": ["anonymous"]
     },
