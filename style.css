@@ -228,7 +228,7 @@ html, body {
 #image-modal {
     padding: 10px;
     cursor: pointer;
-    z-index: 10000 !important; /* تجعل المعاينة تظهر فوق كل النوافذ المنبثقة */
+    z-index: 10000 !important;
 }
 
 #image-modal .modal-preview-img {
@@ -244,11 +244,11 @@ html, body {
     transition: transform 0.3s ease;
 }
 
-/* خاصية تعديل تدوير الصور المقلوبة */
+/* خاصية تدوير الشهادة المقلوبة بالطريقة الصحيحة */
 .rotate-90 {
-    transform: rotate(-90deg);
-    max-width: 80vh !important;
-    max-height: 80vw !important;
+    transform: rotate(90deg);
+    max-width: 75vh !important;
+    max-height: 75vw !important;
 }
 
 @keyframes zoomIn {
@@ -256,12 +256,30 @@ html, body {
     to { transform: scale(1); opacity: 1; }
 }
 
-/* بطاقات الشهادات فـ القائمة */
+/* توحيد تنسيق بطاقات الشهادات ومنع أي صورة من الاستحواذ على المساحة */
+.cert-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+}
+
+.cert-item {
+    text-align: center;
+    background: #0d1117;
+    padding: 8px;
+    border-radius: 10px;
+    border: 1px solid #30363d;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
 .cert-item img {
     width: 100%;
-    height: 130px;
+    height: 85px;
     object-fit: cover;
-    border-radius: 8px;
+    border-radius: 6px;
     cursor: pointer;
     transition: transform 0.2s ease;
 }
