@@ -10,6 +10,17 @@
     <!-- تحميل مسبق للصورة الشخصية لتظهر فوراً بدون تأخير -->
     <link rel="preload" as="image" href="/profile.jpg">
 
+    <!-- Azure Application Insights Tracking SDK -->
+    <script type="text/javascript">
+      !function(T,l,c){var e=window,r=document,p="script",s=r.createElement(p);
+      s.src="https://js.monitor.azure.com/scripts/b/ai.2.min.js";
+      s.async=true;r.getElementsByTagName(p)[0].parentNode.appendChild(s);
+      e[c]={config:{
+        connectionString: "InstrumentationKey=60493cb4-9ecd-4a88-ac10-818d41eac677;IngestionEndpoint=https://westeurope-5.in.applicationinsights.azure.com/;LiveEndpoint=https://westeurope.livediagnostics.monitor.azure.com/;ApplicationId=7c058214-d5b8-4e45-97bb-5f401851314f"
+      }};
+      }(window,document,"appInsights");
+    </script>
+
     <style>
         /* تنسيق خاص لجعل المعاينة دائريّة متناسقة للصورة الشخصية */
         .avatar-preview-shape {
