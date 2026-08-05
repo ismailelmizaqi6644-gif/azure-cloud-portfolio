@@ -6,6 +6,21 @@
     <title>Ismail El Mizaqi | Cloud Portfolio</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- تحميل مسبق للصورة الشخصية لتظهر فوراً بدون تأخير -->
+    <link rel="preload" as="image" href="/profile.jpg">
+
+    <style>
+        /* تنسيق خاص لجعل المعاينة دائريّة متناسقة للصورة الشخصية */
+        .avatar-preview-shape {
+            width: 280px !important;
+            height: 280px !important;
+            object-fit: cover !important;
+            border-radius: 50% !important;
+            border: 4px solid #58a6ff !important;
+            box-shadow: 0 0 25px rgba(88, 166, 255, 0.4) !important;
+        }
+    </style>
 </head>
 <body>
 
@@ -29,7 +44,7 @@
         <!-- Header Profile -->
         <header class="profile-card">
             <div class="avatar" onclick="openImageModal()">
-                <img src="/profile.jpg" alt="Ismail El Mizaqi" class="profile-img">
+                <img src="/profile.jpg" alt="Ismail El Mizaqi" class="profile-img" loading="eager" decoding="sync">
             </div>
             <h1>Ismail El Mizaqi</h1>
             <p class="subtitle" id="txt-subtitle">Technicien Spécialisé en Infrastructure Digitale</p>
@@ -89,7 +104,7 @@
     <!-- ===== POPUP IMAGE MODAL ===== -->
     <div id="image-modal" class="modal" onclick="closeImageModal()">
         <span class="close-btn" onclick="closeImageModal()">&times;</span>
-        <img src="/profile.jpg" alt="Aperçu" class="modal-preview-img">
+        <img src="/profile.jpg" alt="Aperçu" id="preview-img-element" class="modal-preview-img">
     </div>
 
     <!-- ===== MODALS ===== -->
@@ -199,18 +214,19 @@
     </div>
 
     <script>
-        function openPreview(src, shouldRotate = false) {
+        function openPreview(src, isProfile = false) {
             const imgModal = document.getElementById('image-modal');
-            if (imgModal) {
-                const modalImg = imgModal.querySelector('img');
-                if (modalImg) {
-                    modalImg.src = src;
-                    if (shouldRotate) {
-                        modalImg.classList.add('rotate-90');
-                    } else {
-                        modalImg.classList.remove('rotate-90');
-                    }
+            const modalImg = document.getElementById('preview-img-element');
+            if (imgModal && modalImg) {
+                modalImg.src = src;
+                
+                // التحكم في المظهر: دائري للصورة الشخصية ومستطيل للشواهد
+                if (isProfile) {
+                    modalImg.classList.add('avatar-preview-shape');
+                } else {
+                    modalImg.classList.remove('avatar-preview-shape');
                 }
+
                 imgModal.style.display = 'flex';
                 document.body.style.overflow = 'hidden';
             }
@@ -219,7 +235,7 @@
         function openImageModal() {
             const profileImg = document.querySelector('.profile-img');
             if (profileImg) {
-                openPreview(profileImg.src, false);
+                openPreview(profileImg.src, true);
             }
         }
 
@@ -227,8 +243,6 @@
             const imgModal = document.getElementById('image-modal');
             if (imgModal) {
                 imgModal.style.display = 'none';
-                const modalImg = imgModal.querySelector('img');
-                if (modalImg) modalImg.classList.remove('rotate-90');
             }
             document.body.style.overflow = 'auto';
         }
@@ -311,15 +325,15 @@
                     </h3>
                     <div class="cert-grid">
                         <div class="cert-item">
-                            <img src="/excellence-2022-1.jpg" alt="Prix d'Excellence" onclick="openPreview(this.src, false)">
+                            <img src="/excellence-2022-1.jpg" alt="Prix d'Excellence" loading="lazy" decoding="async" onclick="openPreview(this.src, false)">
                             <p style="font-size: 0.8rem; margin-top: 6px; color: #c9d1d9;">Prix d'Excellence (1ère Place)</p>
                         </div>
                         <div class="cert-item">
-                            <img src="/excellence-2022-2.jpg" alt="Attestation de Mérite" onclick="openPreview(this.src, false)">
+                            <img src="/excellence-2022-2.jpg" alt="Attestation de Mérite" loading="lazy" decoding="async" onclick="openPreview(this.src, false)">
                             <p style="font-size: 0.8rem; margin-top: 6px; color: #c9d1d9;">Attestation de Mérite</p>
                         </div>
                         <div class="cert-item">
-                            <img src="/excellence-2022-3.jpg" alt="Encouragement et Félicitations" onclick="openPreview(this.src, false)">
+                            <img src="/excellence-2022-3.jpg" alt="Encouragement et Félicitations" loading="lazy" decoding="async" onclick="openPreview(this.src, false)">
                             <p style="font-size: 0.8rem; margin-top: 6px; color: #c9d1d9;">Encouragement & Félicitations</p>
                         </div>
                     </div>
@@ -331,7 +345,7 @@
                     </h3>
                     <div class="cert-grid">
                         <div class="cert-item">
-                            <img src="/eco-club-2022.jpg" alt="Club Développement Durable" onclick="openPreview(this.src, false)">
+                            <img src="/eco-club-2022.jpg" alt="Club Développement Durable" loading="lazy" decoding="async" onclick="openPreview(this.src, false)">
                             <p style="font-size: 0.8rem; margin-top: 6px; color: #c9d1d9;">Club Développement Durable</p>
                         </div>
                     </div>
@@ -343,11 +357,11 @@
                     </h3>
                     <div class="cert-grid">
                         <div class="cert-item">
-                            <img src="/culture-2022-1.jpg" alt="Concours Récitation" onclick="openPreview(this.src, false)">
+                            <img src="/culture-2022-1.jpg" alt="Concours Récitation" loading="lazy" decoding="async" onclick="openPreview(this.src, false)">
                             <p style="font-size: 0.8rem; margin-top: 6px; color: #c9d1d9;">Concours Récitation du Coran</p>
                         </div>
                         <div class="cert-item">
-                            <img src="/culture-2022-2.jpg" alt="Animation Événementielle" onclick="openPreview(this.src, false)">
+                            <img src="/culture-2022-2.jpg" alt="Animation Événementielle" loading="lazy" decoding="async" onclick="openPreview(this.src, false)">
                             <p style="font-size: 0.8rem; margin-top: 6px; color: #c9d1d9;">Animation Événementielle</p>
                         </div>
                     </div>
@@ -359,15 +373,15 @@
                     </h3>
                     <div class="cert-grid">
                         <div class="cert-item">
-                            <img src="/excellence-2022-1.jpg" alt="Excellence Award" onclick="openPreview(this.src, false)">
+                            <img src="/excellence-2022-1.jpg" alt="Excellence Award" loading="lazy" decoding="async" onclick="openPreview(this.src, false)">
                             <p style="font-size: 0.8rem; margin-top: 6px; color: #c9d1d9;">Excellence Award (1st Place)</p>
                         </div>
                         <div class="cert-item">
-                            <img src="/excellence-2022-2.jpg" alt="Certificate of Merit" onclick="openPreview(this.src, false)">
+                            <img src="/excellence-2022-2.jpg" alt="Certificate of Merit" loading="lazy" decoding="async" onclick="openPreview(this.src, false)">
                             <p style="font-size: 0.8rem; margin-top: 6px; color: #c9d1d9;">Certificate of Merit</p>
                         </div>
                         <div class="cert-item">
-                            <img src="/excellence-2022-3.jpg" alt="Encouragement & Congratulations" onclick="openPreview(this.src, false)">
+                            <img src="/excellence-2022-3.jpg" alt="Encouragement & Congratulations" loading="lazy" decoding="async" onclick="openPreview(this.src, false)">
                             <p style="font-size: 0.8rem; margin-top: 6px; color: #c9d1d9;">Encouragement & Congratulations</p>
                         </div>
                     </div>
@@ -379,7 +393,7 @@
                     </h3>
                     <div class="cert-grid">
                         <div class="cert-item">
-                            <img src="/eco-club-2022.jpg" alt="Sustainable Development Club" onclick="openPreview(this.src, false)">
+                            <img src="/eco-club-2022.jpg" alt="Sustainable Development Club" loading="lazy" decoding="async" onclick="openPreview(this.src, false)">
                             <p style="font-size: 0.8rem; margin-top: 6px; color: #c9d1d9;">Sustainable Development Club</p>
                         </div>
                     </div>
@@ -391,11 +405,11 @@
                     </h3>
                     <div class="cert-grid">
                         <div class="cert-item">
-                            <img src="/culture-2022-1.jpg" alt="Quran Recitation Competition" onclick="openPreview(this.src, false)">
+                            <img src="/culture-2022-1.jpg" alt="Quran Recitation Competition" loading="lazy" decoding="async" onclick="openPreview(this.src, false)">
                             <p style="font-size: 0.8rem; margin-top: 6px; color: #c9d1d9;">Quran Recitation Competition</p>
                         </div>
                         <div class="cert-item">
-                            <img src="/culture-2022-2.jpg" alt="Event Hosting & Animation" onclick="openPreview(this.src, false)">
+                            <img src="/culture-2022-2.jpg" alt="Event Hosting & Animation" loading="lazy" decoding="async" onclick="openPreview(this.src, false)">
                             <p style="font-size: 0.8rem; margin-top: 6px; color: #c9d1d9;">Event Hosting & Animation</p>
                         </div>
                     </div>
@@ -407,15 +421,15 @@
                     </h3>
                     <div class="cert-grid">
                         <div class="cert-item">
-                            <img src="/excellence-2022-1.jpg" alt="جائزة التميز" onclick="openPreview(this.src, false)">
+                            <img src="/excellence-2022-1.jpg" alt="جائزة التميز" loading="lazy" decoding="async" onclick="openPreview(this.src, false)">
                             <p style="font-size: 0.8rem; margin-top: 6px; color: #c9d1d9;">جائزة التميز (المرتبة الأولى)</p>
                         </div>
                         <div class="cert-item">
-                            <img src="/excellence-2022-2.jpg" alt="شهادة استحقاق" onclick="openPreview(this.src, false)">
+                            <img src="/excellence-2022-2.jpg" alt="شهادة استحقاق" loading="lazy" decoding="async" onclick="openPreview(this.src, false)">
                             <p style="font-size: 0.8rem; margin-top: 6px; color: #c9d1d9;">شهادة استحقاق</p>
                         </div>
                         <div class="cert-item">
-                            <img src="/excellence-2022-3.jpg" alt="تشجيع وتهنئة" onclick="openPreview(this.src, false)">
+                            <img src="/excellence-2022-3.jpg" alt="تشجيع وتهنئة" loading="lazy" decoding="async" onclick="openPreview(this.src, false)">
                             <p style="font-size: 0.8rem; margin-top: 6px; color: #c9d1d9;">تشجيع وتهنئة</p>
                         </div>
                     </div>
@@ -427,7 +441,7 @@
                     </h3>
                     <div class="cert-grid">
                         <div class="cert-item">
-                            <img src="/eco-club-2022.jpg" alt="نادي التنمية المستدامة" onclick="openPreview(this.src, false)">
+                            <img src="/eco-club-2022.jpg" alt="نادي التنمية المستدامة" loading="lazy" decoding="async" onclick="openPreview(this.src, false)">
                             <p style="font-size: 0.8rem; margin-top: 6px; color: #c9d1d9;">نادي التنمية المستدامة</p>
                         </div>
                     </div>
@@ -439,11 +453,11 @@
                     </h3>
                     <div class="cert-grid">
                         <div class="cert-item">
-                            <img src="/culture-2022-1.jpg" alt="مسابقة تجويد القرآن" onclick="openPreview(this.src, false)">
+                            <img src="/culture-2022-1.jpg" alt="مسابقة تجويد القرآن" loading="lazy" decoding="async" onclick="openPreview(this.src, false)">
                             <p style="font-size: 0.8rem; margin-top: 6px; color: #c9d1d9;">مسابقة تجويد القرآن الكريم</p>
                         </div>
                         <div class="cert-item">
-                            <img src="/culture-2022-2.jpg" alt="تقديم وتنشيط الفعاليات" onclick="openPreview(this.src, false)">
+                            <img src="/culture-2022-2.jpg" alt="تقديم وتنشيط الفعاليات" loading="lazy" decoding="async" onclick="openPreview(this.src, false)">
                             <p style="font-size: 0.8rem; margin-top: 6px; color: #c9d1d9;">تقديم وتنشيط الفعاليات</p>
                         </div>
                     </div>
@@ -671,4 +685,3 @@
     </script>
 </body>
 </html>
-
