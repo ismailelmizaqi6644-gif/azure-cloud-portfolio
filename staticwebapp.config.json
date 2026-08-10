@@ -1,10 +1,6 @@
 {
   "routes": [
     {
-      "route": "/api/sendMessage",
-      "rewrite": "http://51.136.114.148:3000/api/messages"
-    },
-    {
       "route": "/*",
       "allowedRoles": ["anonymous"]
     }
