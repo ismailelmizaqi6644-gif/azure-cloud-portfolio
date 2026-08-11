@@ -176,6 +176,14 @@ html, body {
     transition: all 0.3s ease;
 }
 
+.arrow {
+    transition: transform 0.3s ease;
+}
+
+.menu-btn:hover .arrow {
+    transform: translateX(5px);
+}
+
 .btn-blue { background: #161b22; border-color: #1f6feb; color: #58a6ff; }
 .btn-blue:hover { background: #1f6feb; color: white; }
 
@@ -263,6 +271,12 @@ html, body {
     gap: 10px;
 }
 
+@media (max-width: 380px) {
+    .cert-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
 .cert-item {
     text-align: center;
     background: #0d1117;
@@ -282,6 +296,10 @@ html, body {
     border-radius: 6px;
     cursor: pointer;
     transition: transform 0.2s ease;
+}
+
+.cert-item img:hover {
+    transform: scale(1.03);
 }
 
 .cert-item img:active {
@@ -367,4 +385,8 @@ html[dir="rtl"] .close-btn {
 
 html[dir="rtl"] .arrow {
     transform: rotate(180deg);
+}
+
+html[dir="rtl"] .menu-btn:hover .arrow {
+    transform: translateX(-5px);
 }
