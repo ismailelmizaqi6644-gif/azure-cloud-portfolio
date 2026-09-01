@@ -82,9 +82,9 @@
                 <i class="fas fa-arrow-right arrow"></i>
             </button>
 
-            <button class="menu-btn btn-yellow" onclick="openModal('skills-modal')">
+            <button class="menu-btn btn-yellow" onclick="openModal('skills-main-modal')">
                 <i class="fas fa-laptop-code"></i>
-                <span id="btn-skills">Compétences Techniques</span>
+                <span id="btn-skills">Compétences</span>
                 <i class="fas fa-arrow-right arrow"></i>
             </button>
 
@@ -138,12 +138,45 @@
         </div>
     </div>
 
-    <!-- 3. Compétences Techniques -->
-    <div id="skills-modal" class="modal">
+    <!-- 3. النافذة الرئيسية للمهارات (تتيح الاختيار بين التقنية والشخصية) -->
+    <div id="skills-main-modal" class="modal">
         <div class="modal-content border-yellow">
-            <span class="close-btn" onclick="closeModal('skills-modal')">&times;</span>
-            <h2 style="margin-bottom: 15px;"><i class="fas fa-laptop-code text-yellow"></i> <span id="modal-skills-title">Compétences Techniques</span></h2>
+            <span class="close-btn" onclick="closeModal('skills-main-modal')">&times;</span>
+            <h2 style="margin-bottom: 20px;"><i class="fas fa-laptop-code text-yellow"></i> <span id="modal-skills-main-title">Compétences</span></h2>
+            
+            <div class="menu-grid" style="gap: 12px;">
+                <button class="menu-btn btn-yellow" onclick="closeModal('skills-main-modal'); openModal('skills-tech-modal');">
+                    <i class="fas fa-code"></i>
+                    <span id="btn-tech-skills">Compétences Techniques</span>
+                    <i class="fas fa-arrow-right arrow"></i>
+                </button>
+
+                <button class="menu-btn btn-yellow" onclick="closeModal('skills-main-modal'); openModal('skills-soft-modal');">
+                    <i class="fas fa-users"></i>
+                    <span id="btn-soft-skills">Soft Skills</span>
+                    <i class="fas fa-arrow-right arrow"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 3.1 نافذة Compétences Techniques -->
+    <div id="skills-tech-modal" class="modal">
+        <div class="modal-content border-yellow">
+            <span class="close-btn" onclick="closeModal('skills-tech-modal')">&times;</span>
+            <h2 style="margin-bottom: 15px;"><i class="fas fa-laptop-code text-yellow"></i> <span id="modal-skills-tech-title">Compétences Techniques</span></h2>
             <div class="modal-body" id="modal-skills-body"></div>
+        </div>
+    </div>
+
+    <!-- 3.2 نافذة Soft Skills (خاوية حالياً) -->
+    <div id="skills-soft-modal" class="modal">
+        <div class="modal-content border-yellow">
+            <span class="close-btn" onclick="closeModal('skills-soft-modal')">&times;</span>
+            <h2 style="margin-bottom: 15px;"><i class="fas fa-users text-yellow"></i> <span id="modal-skills-soft-title">Soft Skills</span></h2>
+            <div class="modal-body" id="modal-soft-body" style="margin-top: 15px;">
+                <p style="text-align: center; color: #8b949e; padding: 20px;" id="txt-soft-empty">[ Bientôt disponible / Coming soon / قريباً ]</p>
+            </div>
         </div>
     </div>
 
@@ -482,14 +515,19 @@
                 cvBtn: "Télécharger CV",
                 aboutBtn: "À propos de moi",
                 projectsBtn: "Mes Projets",
-                skillsBtn: "Compétences Techniques",
+                skillsBtn: "Compétences",
+                modalSkillsMainTitle: "Compétences",
+                techSkillsBtn: "Compétences Techniques",
+                softSkillsBtn: "Soft Skills",
+                modalSkillsTechTitle: "Compétences Techniques",
+                modalSkillsSoftTitle: "Soft Skills",
+                txtSoftEmpty: "[ Bientôt disponible ]",
                 certsBtn: "Certifications & Attestations",
                 expBtn: "Mes Expériences",
                 contactBtn: "Me Contacter (Formulaire)",
                 contactTitle: "Contactez-moi",
                 aboutTitle: "À propos de moi",
                 projectsTitle: "Mes Projets",
-                skillsTitle: "Compétences Techniques",
                 certsTitle: "Certifications & Attestations",
                 techCertsBtn: "Certifications Techniques",
                 attestationsBtn: "Attestations & Engagements",
@@ -537,14 +575,19 @@
                 cvBtn: "Download CV",
                 aboutBtn: "About Me",
                 projectsBtn: "My Projects",
-                skillsBtn: "Technical Skills",
+                skillsBtn: "Skills",
+                modalSkillsMainTitle: "Skills",
+                techSkillsBtn: "Technical Skills",
+                softSkillsBtn: "Soft Skills",
+                modalSkillsTechTitle: "Technical Skills",
+                modalSkillsSoftTitle: "Soft Skills",
+                txtSoftEmpty: "[ Coming soon ]",
                 certsBtn: "Certifications & Credentials",
                 expBtn: "My Experience",
                 contactBtn: "Contact Me (Form)",
                 contactTitle: "Contact Me",
                 aboutTitle: "About Me",
                 projectsTitle: "My Projects",
-                skillsTitle: "Technical Skills",
                 certsTitle: "Certifications & Credentials",
                 techCertsBtn: "Technical Certifications",
                 attestationsBtn: "Attestations & Engagements",
@@ -592,14 +635,19 @@
                 cvBtn: "تحميل السيرة الذاتية",
                 aboutBtn: "نبذة عني",
                 projectsBtn: "مشاريعي",
-                skillsBtn: "المهارات التقنية",
+                skillsBtn: "المهارات",
+                modalSkillsMainTitle: "المهارات",
+                techSkillsBtn: "المهارات التقنية",
+                softSkillsBtn: "المهارات الشخصية",
+                modalSkillsTechTitle: "المهارات التقنية",
+                modalSkillsSoftTitle: "المهارات الشخصية",
+                txtSoftEmpty: "[ قريباً ]",
                 certsBtn: "الشهادات والشواهد",
                 expBtn: "خبراتي المهنية",
                 contactBtn: "تواصل معي (استمارة)",
                 contactTitle: "تواصل معي",
                 aboutTitle: "نبذة عني",
                 projectsTitle: "مشاريعي",
-                skillsTitle: "المهارات التقنية",
                 certsTitle: "الشهادات والشواهد",
                 techCertsBtn: "الشهادات التقنية",
                 attestationsBtn: "الشواهد والالتزامات",
@@ -665,6 +713,12 @@
             document.getElementById('btn-about').innerText = t.aboutBtn;
             document.getElementById('btn-projects').innerText = t.projectsBtn;
             document.getElementById('btn-skills').innerText = t.skillsBtn;
+            if(document.getElementById('modal-skills-main-title')) document.getElementById('modal-skills-main-title').innerText = t.modalSkillsMainTitle;
+            if(document.getElementById('btn-tech-skills')) document.getElementById('btn-tech-skills').innerText = t.techSkillsBtn;
+            if(document.getElementById('btn-soft-skills')) document.getElementById('btn-soft-skills').innerText = t.softSkillsBtn;
+            if(document.getElementById('modal-skills-tech-title')) document.getElementById('modal-skills-tech-title').innerText = t.modalSkillsTechTitle;
+            if(document.getElementById('modal-skills-soft-title')) document.getElementById('modal-skills-soft-title').innerText = t.modalSkillsSoftTitle;
+            if(document.getElementById('txt-soft-empty')) document.getElementById('txt-soft-empty').innerText = t.txtSoftEmpty;
             document.getElementById('btn-certs').innerText = t.certsBtn;
             if(document.getElementById('btn-tech-certs')) document.getElementById('btn-tech-certs').innerText = t.techCertsBtn;
             if(document.getElementById('btn-attestations')) document.getElementById('btn-attestations').innerText = t.attestationsBtn;
@@ -673,7 +727,6 @@
             
             document.getElementById('modal-about-title').innerText = t.aboutTitle;
             document.getElementById('modal-projects-title').innerText = t.projectsTitle;
-            document.getElementById('modal-skills-title').innerText = t.skillsTitle;
             document.getElementById('modal-certs-title').innerText = t.certsTitle;
             if(document.getElementById('modal-tech-title')) document.getElementById('modal-tech-title').innerText = t.modalTechTitle;
             if(document.getElementById('modal-attest-title')) document.getElementById('modal-attest-title').innerText = t.modalAttestTitle;
