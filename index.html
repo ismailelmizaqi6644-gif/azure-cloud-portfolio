@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ismail El Mizaqi | Cloud Portfolio</title>
+    <title>Ismail El Mizaqi | Portfolio</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
@@ -59,7 +59,7 @@
             </div>
             <h1>Ismail El Mizaqi</h1>
             <p class="subtitle" id="txt-subtitle">Technicien Spécialisé en Infrastructure Digitale</p>
-            <span class="badge" id="txt-badge">Option Cloud Computing</span>
+            <span class="badge" id="txt-badge">Option Cybersécurité</span>
 
             <div class="social-links">
                 <a href="https://www.linkedin.com/in/ismail-el-mizaqi-71105641b" target="_blank" class="btn-linkedin">
@@ -138,7 +138,7 @@
         </div>
     </div>
 
-    <!-- 3. النافذة الرئيسية للمهارات (تتيح الاختيار بين التقنية والشخصية) -->
+    <!-- 3. النافذة الرئيسية للمهارات -->
     <div id="skills-main-modal" class="modal">
         <div class="modal-content border-yellow">
             <span class="close-btn" onclick="closeModal('skills-main-modal')">&times;</span>
@@ -169,7 +169,7 @@
         </div>
     </div>
 
-    <!-- 3.2 نافذة Soft Skills (خاوية حالياً) -->
+    <!-- 3.2 نافذة Soft Skills -->
     <div id="skills-soft-modal" class="modal">
         <div class="modal-content border-yellow">
             <span class="close-btn" onclick="closeModal('skills-soft-modal')">&times;</span>
@@ -264,7 +264,6 @@
             if (imgModal && modalImg) {
                 modalImg.src = src;
                 
-                // التحكم في المظهر: دائري للصورة الشخصية ومستطيل للشواهد
                 if (isProfile) {
                     modalImg.classList.add('avatar-preview-shape');
                 } else {
@@ -511,7 +510,7 @@
         const translations = {
             fr: {
                 subtitle: "Technicien Spécialisé en Infrastructure Digitale",
-                badge: "Option Cloud Computing",
+                badge: "Option Cybersécurité",
                 cvBtn: "Télécharger CV",
                 aboutBtn: "À propos de moi",
                 projectsBtn: "Mes Projets",
@@ -539,7 +538,7 @@
                 lblEmail: "Adresse Email :",
                 lblMessage: "Message :",
                 btnSend: "Envoyer le message",
-                aboutBody: "<p>Bonjour, c'est un plaisir de me présenter. Je m'appelle <strong>Ismail El Mizaqi</strong>, étudiant en <strong>Infrastructure Digitale (Option Cloud Computing)</strong> à l'NTIC Safi (OFPPT).</p><p style='margin-top: 10px;'>Je me spécialise dans la conception et la sécurisation des réseaux informatiques ainsi que la gestion des environnements Cloud (sur des plateformes telles que <strong>Microsoft Azure</strong> et <strong>AWS</strong>), en plus de l'administration <strong>Linux & Windows Server</strong> et l'automatisation des infrastructures. J'ambitionne constamment de développer mes compétences et de les appliquer sur des projets concrets.</p>",
+                aboutBody: "<p>Bonjour, c'est un plaisir de me présenter. Je m'appelle <strong>Ismail El Mizaqi</strong>, étudiant en <strong>Infrastructure Digitale (Option Cybersécurité)</strong> à l'NTIC Safi (OFPPT).</p><p style='margin-top: 10px;'>Je me spécialise dans la conception et la sécurisation des réseaux informatiques ainsi que la gestion des environnements Cloud (sur des plateformes telles que <strong>Microsoft Azure</strong> et <strong>AWS</strong>), en plus de l'administration <strong>Linux & Windows Server</strong> et l'automatisation des infrastructures. J'ambitionne constamment de développer mes compétences et de les appliquer sur des projets concrets.</p>",
                 projectsBody: `
                     <div class="skill-box">
                         <h3><i class="fas fa-cloud text-blue"></i> Azure Static Web App & CI/CD</h3>
@@ -571,7 +570,7 @@
             },
             en: {
                 subtitle: "Specialized Technician in Digital Infrastructure",
-                badge: "Cloud Computing Option",
+                badge: "Cybersecurity Option",
                 cvBtn: "Download CV",
                 aboutBtn: "About Me",
                 projectsBtn: "My Projects",
@@ -599,7 +598,7 @@
                 lblEmail: "Email Address:",
                 lblMessage: "Message:",
                 btnSend: "Send Message",
-                aboutBody: "<p>Hello, I am pleased to introduce myself. My name is <strong>Ismail El Mizaqi</strong>, studying <strong>Digital Infrastructure (Cloud Computing Option)</strong> at NTIC Safi (OFPPT).</p><p style='margin-top: 10px;'>I specialize in designing and securing computer networks and managing Cloud environments (on platforms such as <strong>Microsoft Azure</strong> and <strong>AWS</strong>), alongside <strong>Linux & Windows Server</strong> administration and infrastructure automation. I constantly strive to develop my skills and apply them to promising practical projects.</p>",
+                aboutBody: "<p>Hello, I am pleased to introduce myself. My name is <strong>Ismail El Mizaqi</strong>, studying <strong>Digital Infrastructure (Cybersecurity Option)</strong> at NTIC Safi (OFPPT).</p><p style='margin-top: 10px;'>I specialize in designing and securing computer networks and managing Cloud environments (on platforms such as <strong>Microsoft Azure</strong> and <strong>AWS</strong>), alongside <strong>Linux & Windows Server</strong> administration and infrastructure automation. I constantly strive to develop my skills and apply them to promising practical projects.</p>",
                 projectsBody: `
                     <div class="skill-box">
                         <h3><i class="fas fa-cloud text-blue"></i> Azure Static Web App & CI/CD</h3>
@@ -631,7 +630,7 @@
             },
             ar: {
                 subtitle: "تقني متخصص في البنية التحتية الرقمية",
-                badge: "خيار الحوسبة السحابية (Cloud Computing)",
+                badge: "خيار الأمن السيبراني (Cybersécurité)",
                 cvBtn: "تحميل السيرة الذاتية",
                 aboutBtn: "نبذة عني",
                 projectsBtn: "مشاريعي",
@@ -659,7 +658,7 @@
                 lblEmail: "البريد الإلكتروني:",
                 lblMessage: "الرسالة:",
                 btnSend: "إرسال الرسالة",
-                aboutBody: "<p>مرحباً، يشرفني أن أعرّفكم بنفسي. اسمي <strong>إسماعيل الميزاقي</strong>، طالب بشعبة <strong>البنية التحتية الرقمية (خيار الحوسبة السحابية)</strong> بالمعهد المتخصص في تقنيات الإعلام والتواصل بآسفي (<strong>NTIC Safi - OFPPT</strong>).</p><p style='margin-top: 10px;'>أتخصص في تصميم وتأمين شبكات المعلومات وإدارة الأنظمة السحابية (على منصات مثل <strong>Microsoft Azure</strong> و <strong>AWS</strong>)، بالإضافة إلى إدارة سيرفرات <strong>Linux & Windows Server</strong> وأتمتة البنيات التحتية لتوفير حلول رقمية متكاملة وعالية الأداء. وأطمح باستمرار لتطوير مهاراتي وتطبيقها في مشاريع عملية واعدة.</p>",
+                aboutBody: "<p>مرحباً، يشرفني أن أعرّفكم بنفسي. اسمي <strong>إسماعيل الميزاقي</strong>، طالب بشعبة <strong>البنية التحتية الرقمية (خيار الأمن السيبراني)</strong> بالمعهد المتخصص في تقنيات الإعلام والتواصل بآسفي (<strong>NTIC Safi - OFPPT</strong>).</p><p style='margin-top: 10px;'>أتخصص في تصميم وتأمين شبكات المعلومات وإدارة الأنظمة السحابية (على منصات مثل <strong>Microsoft Azure</strong> و <strong>AWS</strong>)، بالإضافة إلى إدارة سيرفرات <strong>Linux & Windows Server</strong> وأتمتة البنيات التحتية لتوفير حلول رقمية متكاملة وعالية الأداء. وأطمح باستمرار لتطوير مهاراتي وتطبيقها في مشاريع عملية واعدة.</p>",
                 projectsBody: `
                     <div class="skill-box">
                         <h3><i class="fas fa-cloud text-blue"></i> Azure Static Web App & CI/CD</h3>
