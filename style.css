@@ -7,7 +7,7 @@
     font-family: 'Poppins', sans-serif;
 }
 
-/* إصلاح السكرول فـ الهاتف والكمبيوتر */
+/* إصلاح السكرول في الهاتف والكمبيوتر */
 html, body {
     background: #0d1117;
     color: #c9d1d9;
@@ -252,6 +252,16 @@ html, body {
     transition: transform 0.3s ease;
 }
 
+/* تنسيق دائم وحصري لشكل الصورة الشخصية عند التكبير */
+.avatar-preview-shape {
+    width: 280px !important;
+    height: 280px !important;
+    object-fit: cover !important;
+    border-radius: 50% !important;
+    border: 4px solid #58a6ff !important;
+    box-shadow: 0 0 25px rgba(88, 166, 255, 0.4) !important;
+}
+
 /* خاصية تدوير الشهادة المقلوبة بالطريقة الصحيحة */
 .rotate-90 {
     transform: rotate(90deg);
@@ -388,5 +398,5 @@ html[dir="rtl"] .arrow {
 }
 
 html[dir="rtl"] .menu-btn:hover .arrow {
-    transform: translateX(-5px);
+    transform: rotate(180deg) translateX(5px);
 }
